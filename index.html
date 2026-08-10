@@ -283,16 +283,26 @@ body::after{
 
 /* ===== RULES PAGE ===== */
 .rules-hero{
-  padding:52px 20px 28px;text-align:center;
-  background:radial-gradient(ellipse 90% 55% at 50% 0%,#1e0a38 0%,var(--bg) 70%)
+  position:relative;width:100%;
+  height:min(72vw,320px);
+  background:url('disney-villainous-review-2.jpg') center center/cover no-repeat;
+  display:flex;align-items:flex-end;justify-content:center;
+  overflow:hidden;flex-shrink:0
 }
-.rules-icon{font-size:54px;display:block;margin-bottom:14px;filter:drop-shadow(0 0 24px rgba(201,162,74,0.4))}
+.rules-hero::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,4,18,0.92) 0%,rgba(8,4,18,0.45) 50%,rgba(8,4,18,0.15) 100%)
+}
+.rules-hero-text{
+  position:relative;z-index:1;
+  text-align:center;padding:0 20px 24px
+}
 .rules-title{
   font-family:'Cinzel Decorative',serif;font-weight:900;
-  font-size:clamp(16px,5vw,26px);color:var(--gold-lt);margin:0 0 8px;
-  line-height:1.2;text-shadow:0 0 30px rgba(201,162,74,0.35)
+  font-size:clamp(18px,5.5vw,30px);color:var(--gold-lt);margin:0 0 6px;
+  line-height:1.2;text-shadow:0 0 30px rgba(201,162,74,0.6)
 }
-.rules-sub{color:var(--ink-dim);font-size:14px;font-style:italic;margin:0}
+.rules-sub{color:rgba(255,255,255,0.7);font-size:13px;font-style:italic;margin:0;letter-spacing:0.04em}
 .rcontent{padding:14px 16px 28px}
 .rcard{
   background:var(--surface);border:1px solid var(--border);
@@ -393,9 +403,10 @@ body::after{
 <!-- ===== RULES PAGE ===== -->
 <section id="page-reglas" class="page active">
   <div class="rules-hero">
-    <span class="rules-icon">&#127858;</span>
-    <h1 class="rules-title">Disney Villainous</h1>
-    <p class="rules-sub">Reglas completas del juego</p>
+    <div class="rules-hero-text">
+      <h1 class="rules-title">Disney Villainous</h1>
+      <p class="rules-sub">Reglas completas del juego</p>
+    </div>
   </div>
   <div class="rcontent">
 
