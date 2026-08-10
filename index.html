@@ -1030,17 +1030,20 @@ document.addEventListener('keydown', e => {
 
 // ==================== SWIPE BETWEEN VILLAINS ====================
 const VILLAIN_ORDER_SWIPE = ['reglas','garfio','malefica','juan','ursula'];
-let _touchX = null;
+let _touchX = null, _touchY = null;
 
 document.addEventListener('touchstart', e => {
   _touchX = e.touches[0].clientX;
+  _touchY = e.touches[0].clientY;
 }, {passive:true});
 
 document.addEventListener('touchend', e => {
   if (_touchX === null) return;
   const dx = e.changedTouches[0].clientX - _touchX;
-  _touchX = null;
-  if (Math.abs(dx) < 55) return; // too short
+  const dy = e.changedTouches[0].clientY - _touchY;
+  _touchX = null; _touchY = null;
+  if (Math.abs(dx) < 55) return;          // too short
+  if (Math.abs(dy) > Math.abs(dx)) return; // mostly vertical — user is scrolling
   // Ignore swipe that started inside the legend modal or filter chips
   const target = e.target;
   if (target.closest('.moverlay') || target.closest('.fchips')) return;
