@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guía de Villanos — Disney Villainous en familia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700,900&family=Nunito:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#14101F;
+  --terciopelo:#241B36;
+  --terciopelo-alto:#2E2344;
+  --pergamino:#F2E7D3;
+  --pergamino-suave:#E4D5B7;
+  --oro:#C9A227;
+  --oro-claro:#E8C767;
+  --rojo:#A3242C;
+  --pocion:#3FBF9F;
+  --display:"Cinzel Decorative","Palatino Linotype",Palatino,Georgia,serif;
+  --cuerpo:"Nunito","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:
+    radial-gradient(120% 80% at 50% -10%, #322048 0%, transparent 60%),
+    radial-gradient(90% 60% at 100% 100%, #1B2A2E 0%, transparent 55%),
+    var(--tinta);
+  background-attachment:fixed;
+  color:var(--pergamino);
+  font-family:var(--cuerpo);
+  font-size:17px;
+  line-height:1.55;
+  padding-bottom:64px;
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px}
+
+/* ---------- CABECERA ---------- */
+header{padding:34px 0 18px;text-align:center;position:relative}
+.eyebrow{
+  font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+  font-weight:900;color:var(--oro);opacity:.85;margin:0 0 10px
+}
+h1{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(34px,10vw,58px);line-height:.95;margin:0;
+  color:var(--pergamino);
+  text-shadow:0 0 26px rgba(201,162,39,.28)
+}
+h1 span{display:block;font-size:.42em;letter-spacing:.06em;color:var(--oro-claro);margin-top:12px}
+.lema{color:var(--pergamino-suave);opacity:.8;margin:14px auto 0;max-width:34ch;font-size:15px}
+
+/* ---------- INTERRUPTOR MODO SIMPLE ---------- */
+.modo{
+  display:flex;align-items:center;gap:12px;justify-content:center;
+  margin:22px auto 4px;background:rgba(63,191,159,.08);
+  border:1px solid rgba(63,191,159,.35);border-radius:999px;
+  padding:9px 16px;width:fit-content;cursor:pointer;
+  transition:background .2s ease
+}
+.modo:hover{background:rgba(63,191,159,.16)}
+.modo span{font-weight:700;font-size:14px;color:var(--pocion)}
+.switch{width:44px;height:25px;border-radius:999px;background:rgba(242,231,211,.18);position:relative;flex:none;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:19px;height:19px;border-radius:50%;background:var(--pergamino);transition:transform .22s ease}
+body.simple .switch{background:var(--pocion)}
+body.simple .switch::after{transform:translateX(19px);background:#0E2B26}
+
+/* ---------- PESTAÑAS ---------- */
+nav{
+  position:sticky;top:0;z-index:20;
+  background:linear-gradient(to bottom, rgba(20,16,31,.97) 70%, rgba(20,16,31,0));
+  padding:10px 0 14px;margin-top:18px
+}
+.tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:0 18px;max-width:760px;margin:0 auto}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  flex:none;border:1px solid rgba(201,162,39,.35);background:transparent;
+  color:var(--pergamino-suave);font-family:var(--cuerpo);font-weight:700;font-size:14px;
+  padding:9px 15px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.18s
+}
+.tab:hover{border-color:var(--oro);color:var(--pergamino)}
+.tab[aria-selected="true"]{background:var(--oro);border-color:var(--oro);color:#241B0A}
+.tab:focus-visible{outline:3px solid var(--pocion);outline-offset:2px}
+
+/* ---------- SECCIONES ---------- */
+section[hidden]{display:none}
+.seccion-titulo{
+  font-family:var(--display);font-weight:700;font-size:clamp(24px,6vw,34px);
+  margin:26px 0 6px;color:var(--oro-claro)
+}
+.seccion-intro{margin:0 0 22px;color:var(--pergamino-suave);opacity:.85;font-size:15.5px}
+
+.panel{
+  background:linear-gradient(160deg,var(--terciopelo-alto),var(--terciopelo));
+  border:1px solid rgba(201,162,39,.28);
+  border-radius:14px;padding:18px 18px 16px;margin:0 0 14px;
+  position:relative
+}
+.panel h3{
+  font-family:var(--display);font-size:19px;margin:0 0 8px;color:var(--pergamino);font-weight:700
+}
+.panel p{margin:0 0 10px}
+.panel p:last-child{margin-bottom:0}
+.etiqueta{
+  display:inline-block;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:900;color:var(--oro);border:1px solid rgba(201,162,39,.4);
+  padding:3px 9px;border-radius:999px;margin-bottom:10px
+}
+.aviso{
+  border-left:3px solid var(--rojo);background:rgba(163,36,44,.14);
+  padding:11px 14px;border-radius:0 10px 10px 0;margin:12px 0 0;font-size:15px
+}
+.aviso b{color:#F09098}
+
+/* Nota modo simple */
+.simple-nota{display:none;margin-top:12px;border-left:3px solid var(--pocion);
+  background:rgba(63,191,159,.1);padding:11px 14px;border-radius:0 10px 10px 0;font-size:15.5px}
+.simple-nota::before{
+  content:"En simple";display:block;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:900;color:var(--pocion);margin-bottom:4px
+}
+body.simple .simple-nota{display:block}
+
+/* ---------- PREPARACIÓN: LISTA ---------- */
+.barra{height:8px;border-radius:999px;background:rgba(242,231,211,.14);overflow:hidden;margin:0 0 4px}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--oro),var(--oro-claro));transition:width .35s ease}
+.barra-txt{font-size:13px;color:var(--oro);font-weight:700;margin:0 0 18px}
+.paso{
+  display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;
+  background:linear-gradient(160deg,var(--terciopelo-alto),var(--terciopelo));
+  border:1px solid rgba(201,162,39,.24);border-radius:14px;
+  padding:16px;margin-bottom:10px;cursor:pointer;color:inherit;
+  font-family:var(--cuerpo);font-size:16px;line-height:1.5;transition:.18s
+}
+.paso:hover{border-color:rgba(201,162,39,.6)}
+.paso:focus-visible{outline:3px solid var(--pocion);outline-offset:2px}
+.marca{
+  flex:none;width:30px;height:30px;border-radius:50%;border:2px solid var(--oro);
+  display:grid;place-items:center;font-family:var(--display);font-weight:700;
+  color:var(--oro);font-size:14px;transition:.2s
+}
+.paso.hecho{opacity:.5}
+.paso.hecho .marca{background:var(--oro);color:#241B0A;border-color:var(--oro)}
+.paso.hecho .marca::after{content:"✓";font-size:16px}
+.paso.hecho .marca em{display:none}
+.paso strong{display:block;color:var(--pergamino);font-size:16.5px;margin-bottom:2px}
+.paso span{color:var(--pergamino-suave);opacity:.9;font-size:15px}
+
+/* ---------- TURNO: TABLERO ---------- */
+.tablero{
+  border:1px solid rgba(201,162,39,.3);border-radius:14px;overflow:hidden;
+  background:#1A1327;margin-bottom:14px
+}
+.lugares{display:grid;grid-template-columns:repeat(4,1fr)}
+.lugar{
+  padding:34px 6px 12px;text-align:center;position:relative;
+  border-right:1px solid rgba(201,162,39,.18);min-height:104px
+}
+.lugar:last-child{border-right:none}
+.lugar b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--pergamino-suave);opacity:.7}
+.lugar .iconos{font-size:15px;margin-top:8px;letter-spacing:2px;opacity:.55}
+.ficha{
+  position:absolute;top:8px;left:50%;width:22px;height:22px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#F09098,var(--rojo));
+  box-shadow:0 0 14px rgba(163,36,44,.9);
+  transform:translateX(-50%) scale(0);transition:transform .4s cubic-bezier(.4,1.6,.5,1)
+}
+.lugar.activo .ficha{transform:translateX(-50%) scale(1)}
+.lugar.activo{background:rgba(201,162,39,.1)}
+.lugar.activo b{color:var(--oro-claro);opacity:1}
+.lugar.activo .iconos{opacity:1}
+.lugar.tapado::after{
+  content:"Destino";position:absolute;inset:auto 6px 8px;font-size:10px;
+  color:#F09098;letter-spacing:.1em;text-transform:uppercase;font-weight:900
+}
+.lugar.tapado .iconos{text-decoration:line-through;opacity:.3}
+
+.fases{display:flex;gap:8px;margin-bottom:14px}
+.fase{
+  flex:1;border:1px solid rgba(201,162,39,.25);border-radius:12px;padding:11px 8px;
+  text-align:center;font-size:13px;font-weight:700;color:var(--pergamino-suave);
+  background:var(--terciopelo);transition:.2s
+}
+.fase small{display:block;font-family:var(--display);font-size:15px;color:var(--oro);margin-bottom:3px}
+.fase.on{background:var(--oro);color:#241B0A;border-color:var(--oro)}
+.fase.on small{color:#241B0A}
+.boton{
+  width:100%;padding:15px;border-radius:12px;border:none;cursor:pointer;
+  background:linear-gradient(180deg,var(--oro-claro),var(--oro));color:#241B0A;
+  font-family:var(--cuerpo);font-weight:900;font-size:16px;letter-spacing:.02em;
+  transition:filter .18s
+}
+.boton:hover{filter:brightness(1.1)}
+.boton:focus-visible{outline:3px solid var(--pocion);outline-offset:2px}
+.boton.fantasma{background:transparent;border:1px solid rgba(201,162,39,.4);color:var(--oro)}
+.narracion{
+  min-height:76px;background:rgba(0,0,0,.25);border-radius:12px;padding:14px;
+  margin:14px 0;font-size:15.5px;border:1px solid rgba(242,231,211,.1)
+}
+.narracion b{color:var(--oro-claro)}
+
+/* ---------- ACCIONES / CARTAS ---------- */
+.acordeon{border:1px solid rgba(201,162,39,.26);border-radius:14px;overflow:hidden;margin-bottom:10px;background:var(--terciopelo)}
+.acordeon summary{
+  list-style:none;cursor:pointer;padding:15px 16px;display:flex;align-items:center;gap:13px;
+  font-weight:700;font-size:16.5px
+}
+.acordeon summary::-webkit-details-marker{display:none}
+.acordeon summary:focus-visible{outline:3px solid var(--pocion);outline-offset:-3px}
+.simbolo{
+  flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--oro);
+  display:grid;place-items:center;font-size:17px;color:var(--oro-claro);background:rgba(201,162,39,.09)
+}
+.acordeon .cuerpo{padding:0 16px 16px;font-size:15.5px;color:var(--pergamino-suave)}
+.acordeon .cuerpo p{margin:0 0 10px}
+.acordeon .cuerpo p:last-child{margin-bottom:0}
+.acordeon[open] summary{color:var(--oro-claro)}
+.flecha{margin-left:auto;color:var(--oro);opacity:.6;transition:transform .2s}
+.acordeon[open] .flecha{transform:rotate(90deg)}
+.tipo-tag{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-left:auto}
+.t-villano{background:rgba(163,36,44,.25);color:#F09098}
+.t-destino{background:rgba(63,191,159,.18);color:var(--pocion)}
+.t-ambos{background:rgba(201,162,39,.2);color:var(--oro-claro)}
+
+/* ---------- VILLANOS ---------- */
+.picker{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin-bottom:18px;padding-bottom:2px}
+.picker::-webkit-scrollbar{display:none}
+.picker button{
+  flex:1 0 auto;min-width:112px;border-radius:14px;cursor:pointer;padding:13px 12px;
+  background:var(--terciopelo);border:1px solid rgba(201,162,39,.28);color:var(--pergamino-suave);
+  font-family:var(--cuerpo);font-weight:800;font-size:14.5px;line-height:1.25;transition:.18s
+}
+.picker button small{display:block;font-weight:400;font-size:11.5px;opacity:.65;margin-top:3px}
+.picker button:focus-visible{outline:3px solid var(--pocion);outline-offset:2px}
+.picker button.sel{background:var(--ac,#C9A227);border-color:var(--ac,#C9A227);color:#191021}
+.picker button.sel small{opacity:.8;color:#191021}
+
+.objetivo{
+  border:1px solid var(--ac);border-radius:16px;padding:20px 18px;margin-bottom:16px;
+  background:linear-gradient(150deg, rgba(255,255,255,.06), rgba(0,0,0,.22))
+}
+.objetivo .eyebrow{margin-bottom:8px;color:var(--ac)}
+.objetivo h3{
+  font-family:var(--display);font-weight:900;font-size:clamp(20px,5.2vw,27px);
+  line-height:1.18;margin:0;color:var(--pergamino)
+}
+.objetivo .cita{margin:14px 0 0;font-style:italic;opacity:.7;font-size:14.5px}
+.ruta .panel{border-left:3px solid var(--ac)}
+.num{
+  display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;
+  background:var(--ac);color:#191021;font-weight:900;font-size:13px;margin-right:9px;vertical-align:-5px
+}
+.cartas-clave{display:grid;gap:9px;margin-top:12px}
+.carta-clave{
+  border:1px solid rgba(242,231,211,.16);border-radius:11px;padding:11px 13px;background:rgba(0,0,0,.22)
+}
+.carta-clave b{display:block;font-size:14.5px;color:var(--ac);letter-spacing:.02em}
+.carta-clave em{font-style:normal;font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;opacity:.55;font-weight:900}
+.carta-clave span{display:block;font-size:14.5px;margin-top:5px;color:var(--pergamino-suave)}
+
+/* ---------- QUIZ ---------- */
+.quiz-p{font-family:var(--display);font-size:19px;margin:0 0 14px;color:var(--pergamino)}
+.opcion{
+  display:block;width:100%;text-align:left;padding:14px 16px;margin-bottom:9px;
+  border-radius:12px;border:1px solid rgba(201,162,39,.3);background:var(--terciopelo-alto);
+  color:var(--pergamino);font-family:var(--cuerpo);font-size:15.5px;cursor:pointer;transition:.15s
+}
+.opcion:hover:not(:disabled){border-color:var(--oro);transform:translateX(3px)}
+.opcion:disabled{cursor:default}
+.opcion.bien{background:rgba(63,191,159,.2);border-color:var(--pocion)}
+.opcion.mal{background:rgba(163,36,44,.22);border-color:var(--rojo)}
+.feedback{margin-top:12px;font-size:15px;padding:12px 14px;border-radius:10px;background:rgba(0,0,0,.25)}
+.marcador{font-size:13px;color:var(--oro);font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.medalla{text-align:center;padding:10px 0}
+.medalla b{font-family:var(--display);font-size:30px;color:var(--oro-claro);display:block;margin-bottom:8px}
+
+footer{text-align:center;padding:34px 18px 10px;color:var(--pergamino-suave);opacity:.45;font-size:13px}
+
+@media (max-width:420px){
+  .lugar{padding:30px 3px 10px}
+  .lugar b{font-size:10px}
+  .fase{font-size:11.5px;padding:9px 4px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Guía de casa · Reglas básicas</p>
+    <h1>Villanos<span>Disney Villainous</span></h1>
+    <p class="lema">Cada villano juega su propio tablero. Gana el primero que cumpla su objetivo secreto.</p>
+    <button class="modo" id="btnModo" aria-pressed="false">
+      <span class="switch" aria-hidden="true"></span>
+      <span>Explicación simple (para peques)</span>
+    </button>
+  </div>
+</header>
+
+<nav>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-t="prep">1 · Preparar</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="turno">2 · Tu turno</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="acciones">3 · Acciones</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="cartas">4 · Cartas</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="ganar">5 · Ganar</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="villanos">6 · Villanos</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="quiz">7 · Reto</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ PREPARAR ============ -->
+<section id="prep">
+  <h2 class="seccion-titulo">Preparar la mesa</h2>
+  <p class="seccion-intro">Toca cada paso cuando lo termines. Son 8 y se hacen en cinco minutos.</p>
+
+  <div class="barra"><i id="barraFill"></i></div>
+  <p class="barra-txt" id="barraTxt">0 de 8 listos</p>
+
+  <div id="pasos"></div>
+
+  <div class="panel" style="margin-top:16px">
+    <span class="etiqueta">Regla de oro</span>
+    <h3>Tu Reino es tuyo</h3>
+    <p>Las cartas jugadas en tu tablero están «en tu Reino». Las cartas de tu mano, tus mazos y tus descartes <b>no</b> están en tu Reino.</p>
+    <p>Una habilidad solo afecta a cartas del mismo Reino. Ninguna carta de tu Reino toca las cartas del Reino de otro villano.</p>
+    <div class="simple-nota">Cada quien tiene su propio tablero, como su propia casa. Lo que pasa en tu casa no cambia nada en la casa de al lado.</div>
+  </div>
+</section>
+
+<!-- ============ TURNO ============ -->
+<section id="turno" hidden>
+  <h2 class="seccion-titulo">Tu turno, paso a paso</h2>
+  <p class="seccion-intro">Siempre en este orden: mover, actuar, robar. Pulsa el botón y mira cómo se mueve tu villano.</p>
+
+  <div class="fases" id="fases">
+    <div class="fase on" data-f="1"><small>1</small>Mover</div>
+    <div class="fase" data-f="2"><small>2</small>Acciones</div>
+    <div class="fase" data-f="3"><small>3</small>Robar</div>
+  </div>
+
+  <div class="tablero">
+    <div class="lugares" id="lugares">
+      <div class="lugar activo"><span class="ficha"></span><b>Lugar 1</b><span class="iconos">◉ ▷ ⚡ ⚔</span></div>
+      <div class="lugar"><span class="ficha"></span><b>Lugar 2</b><span class="iconos">◉ ◉ ▷ ⤢</span></div>
+      <div class="lugar tapado"><span class="ficha"></span><b>Lugar 3</b><span class="iconos">▷ ⚔ ⤢ ◉</span></div>
+      <div class="lugar"><span class="ficha"></span><b>Lugar 4</b><span class="iconos">◉ ⚡ ▷ ⚔</span></div>
+    </div>
+  </div>
+
+  <div class="narracion" id="narracion">
+    <b>Fase 1 — Mueve tu villano.</b> Elige cualquier otro lugar de tu tablero. Puede ser el de al lado o el del otro extremo, da igual.
+  </div>
+  <button class="boton" id="btnTurno">Siguiente fase →</button>
+  <button class="boton fantasma" id="btnReset" style="margin-top:8px">Reiniciar demostración</button>
+
+  <div class="panel" style="margin-top:20px">
+    <span class="etiqueta">Fase 1</span>
+    <h3>Mueve tu villano</h3>
+    <p>Mueve tu ficha a un lugar <b>distinto</b> del que estás. No puedes quedarte donde estabas.</p>
+    <div class="aviso"><b>Ojo:</b> moverse es obligatorio, aunque el lugar nuevo te convenga menos.</div>
+    <div class="simple-nota">Nunca te quedas quieto. Siempre saltas a otra casilla de tu tablero.</div>
+  </div>
+
+  <div class="panel">
+    <span class="etiqueta">Fase 2</span>
+    <h3>Haz las acciones de ese lugar</h3>
+    <p>Cada lugar tiene símbolos de acción. Puedes hacer <b>todos</b> los disponibles, en el orden que quieras, <b>una vez cada uno</b>.</p>
+    <p>Los símbolos tapados por una carta de Destino (un Héroe, por ejemplo) no están disponibles hasta que esa carta se mueva o se descarte.</p>
+    <p>Ninguna acción es obligatoria: puedes hacer todas, algunas o ninguna.</p>
+    <div class="simple-nota">Mira los dibujitos de la casilla donde caíste. Cada dibujito es algo que puedes hacer, y solo una vez. Si hay una carta encima tapándolo, ese no se puede.</div>
+  </div>
+
+  <div class="panel">
+    <span class="etiqueta">Fase 3</span>
+    <h3>Roba hasta tener 4 cartas</h3>
+    <p>Al final de tu turno, si tienes menos de cuatro cartas en la mano, roba de tu mazo de Villano hasta tener cuatro.</p>
+    <p>Si tu mazo se queda sin cartas, baraja tu pila de descarte y forma un mazo nuevo.</p>
+    <div class="aviso"><b>Error clásico:</b> no se roba en el momento de jugar o descartar una carta. Se espera <b>siempre</b> al final del turno.</div>
+    <div class="simple-nota">Al terminar, cuenta tus cartas. ¿Tienes menos de cuatro? Roba hasta llegar a cuatro. Ni antes, ni más.</div>
+  </div>
+</section>
+
+<!-- ============ ACCIONES ============ -->
+<section id="acciones" hidden>
+  <h2 class="seccion-titulo">Las 8 acciones</h2>
+  <p class="seccion-intro">Toca cada una para abrirla. No todos los tableros tienen todas: cada villano usa las suyas.</p>
+
+  <details class="acordeon">
+    <summary><span class="simbolo">◉</span> Ganar Poder <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Toma del Caldero tantas fichas de Poder como indique el número del símbolo. Si pone «2», tomas 2 fichas.</p>
+      <p>El Poder es el dinero del juego: sirve para pagar el coste de tus cartas.</p>
+      <div class="simple-nota">Son tus monedas. Las coges del caldero y las guardas para comprar cartas.</div>
+    </div>
+  </details>
+
+  <details class="acordeon">
+    <summary><span class="simbolo">▷</span> Jugar una Carta <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Juega una carta de tu mano por cada símbolo que haya en el lugar.</p>
+      <p>Paga su <b>Coste</b> (el número de la esquina superior izquierda) devolviendo esa cantidad de Poder al Caldero. Si no tienes suficiente Poder, no puedes jugarla.</p>
+      <p>Los Aliados y los Ítems se quedan en el lugar donde los pongas. Los Efectos y las Condiciones se resuelven y se descartan de inmediato.</p>
+      <div class="simple-nota">Pagas las monedas que dice el número de arriba y pones la carta en tu tablero.</div>
+    </div>
+  </details>
+
+  <details class="acordeon">
+    <summary><span class="simbolo">⚡</span> Destino <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Es tu manera de fastidiar a otro jugador. Elige un oponente y revela las <b>dos cartas superiores de su mazo de Destino</b>.</p>
+      <p>Tú decides cuál de las dos se juega contra él; la otra va a su pila de descarte de Destino.</p>
+      <p>Un Héroe se coloca en el lugar que tú elijas de su Reino, <b>tapando los dos símbolos de acción superiores</b> de ese lugar.</p>
+      <div class="simple-nota">Robas dos cartas del mazo malo de otro jugador, eliges la peor para él y se la pones encima para bloquearle acciones.</div>
+    </div>
+  </details>
+
+  <details class="acordeon">
+    <summary><span class="simbolo">⤢</span> Mover un Ítem o Aliado <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Mueve un Ítem o un Aliado de tu Reino a un lugar <b>adyacente</b> (el de al lado).</p>
+      <p>No puedes mover por separado un Ítem que esté unido a un Aliado o a un Héroe. Pero si mueves al Aliado, sus Ítems viajan con él.</p>
+      <div class="simple-nota">Solo se mueve a la casilla de al lado, no al otro extremo. Y si el ayudante lleva un objeto, el objeto va con él.</div>
+    </div>
+  </details>
+
+  <details class="acordeon">
+    <summary><span class="simbolo">⇄</span> Mover un Héroe <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Mueve un Héroe de cualquier lugar de tu Reino a un lugar adyacente.</p>
+      <p>Sirve para dos cosas: destapar acciones que necesitas, o juntar al Héroe con tus Aliados para poder vencerlo.</p>
+      <div class="simple-nota">Empujas al héroe molesto a la casilla de al lado para liberar tus dibujitos.</div>
+    </div>
+  </details>
+
+  <details class="acordeon">
+    <summary><span class="simbolo">⚔</span> Vencer <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Derrota a un Héroe de tu Reino usando uno o más <b>Aliados que estén en el mismo lugar</b> que él.</p>
+      <p>Suma la Fuerza de tus Aliados (número de la esquina inferior izquierda). Debe ser <b>igual o mayor</b> que la Fuerza del Héroe.</p>
+      <p>Después: los Aliados usados van a tu descarte de Villano, y el Héroe va al descarte de Destino.</p>
+      <p><b>Ejemplo:</b> un Héroe de Fuerza 5 y tres Aliados en su lugar (4, 1 y 3). Con el de 4 y el de 1 ya suman 5 y basta: esos dos se descartan y el de 3 se queda en el tablero.</p>
+      <div class="simple-nota">Tus ayudantes tienen que estar en la misma casilla que el héroe. Suma sus números: si llegan al número del héroe, lo derrotas. Los ayudantes que usaste se van, el héroe también.</div>
+    </div>
+  </details>
+
+  <details class="acordeon">
+    <summary><span class="simbolo">✕</span> Descartar Cartas <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Descarta las cartas que quieras de tu mano, boca arriba, a tu pila de descarte de Villano.</p>
+      <p>Sirve para quitarte de encima cartas inútiles y volver a ver las buenas cuando el mazo se recicle.</p>
+      <div class="aviso"><b>Recuerda:</b> no robas al instante. Repones al final del turno.</div>
+      <div class="simple-nota">Tiras las cartas que no te sirven. Las nuevas llegan al final del turno, no ahora.</div>
+    </div>
+  </details>
+
+  <details class="acordeon">
+    <summary><span class="simbolo">◆</span> Acciones especiales <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Cada tablero es distinto y algunos villanos tienen acciones propias que no salen en esta lista.</p>
+      <p>Cuando aparezca un símbolo raro, mira tu <b>Carta de Referencia</b> o tu <b>Guía de Villano</b>: ahí está explicado.</p>
+      <div class="simple-nota">Si ves un dibujito que no conoces, míralo en la tarjeta de ayuda de tu villano.</div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ CARTAS ============ -->
+<section id="cartas" hidden>
+  <h2 class="seccion-titulo">Tipos de cartas</h2>
+  <p class="seccion-intro">Tienes dos mazos: el de <b>Villano</b> (tus cartas, se juegan en tu Reino) y el de <b>Destino</b> (cartas que los demás juegan contra ti).</p>
+
+  <details class="acordeon" open>
+    <summary>Aliado <span class="tipo-tag t-villano">Mazo Villano</span> <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Tus secuaces y mascotas. Se juegan pagando su Coste y se quedan en el lugar que elijas de tu Reino.</p>
+      <p>Tienen <b>Fuerza</b> (esquina inferior izquierda): es el número que usas para Vencer Héroes.</p>
+      <p>Muchos tienen además una Habilidad. Una vez está en tu Reino, decides si lo gastas para vencer a un Héroe o lo conservas por su Habilidad.</p>
+      <div class="simple-nota">Son tus ayudantes. El número de abajo es su fuerza para pelear con los héroes.</div>
+    </div>
+  </details>
+
+  <details class="acordeon">
+    <summary>Ítem <span class="tipo-tag t-ambos">En los dos mazos</span> <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Objetos que modifican a otras cartas o acciones. Se pagan y se colocan en un lugar de tu Reino.</p>
+      <p>Si la carta dice que va unida a un Aliado, colócala debajo de un Aliado. Si no hay ninguno disponible, no puedes jugar ese Ítem.</p>
+      <p>Los Ítems que vienen del mazo de <b>Destino</b> se unen a Héroes, y suelen hacerlos más fuertes.</p>
+      <div class="simple-nota">Son objetos. Algunos se pegan debajo de un ayudante para hacerlo mejor; los de los héroes los hacen más difíciles de vencer.</div>
+    </div>
+  </details>
+
+  <details class="acordeon">
+    <summary>Efecto <span class="tipo-tag t-ambos">En los dos mazos</span> <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Ocurren de inmediato y se descartan. Pagas su Coste, haces lo que dice y la carta se va al descarte.</p>
+      <p>Si no puedes hacer lo que dice, puedes jugarla igual, pero el efecto no pasa.</p>
+      <div class="simple-nota">Un rayo: pasa una vez y la carta se tira.</div>
+    </div>
+  </details>
+
+  <details class="acordeon">
+    <summary>Condición <span class="tipo-tag t-villano">Mazo Villano</span> <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Es la única carta que se juega <b>en el turno de otro jugador</b>. No se juega con la acción de Jugar una Carta.</p>
+      <p>Cuando durante el turno de un rival se cumple lo que la carta pide, la juegas al momento, haces lo que dice y la descartas.</p>
+      <p>Después el turno de tu rival sigue con normalidad. Tú no robas ahora: esperas al final de tu propio turno.</p>
+      <div class="simple-nota">Es una trampa preparada. Salta sola cuando el otro jugador hace justo lo que la carta dice.</div>
+    </div>
+  </details>
+
+  <details class="acordeon">
+    <summary>Héroe <span class="tipo-tag t-destino">Mazo Destino</span> <span class="flecha">›</span></summary>
+    <div class="cuerpo">
+      <p>Los buenos. Nunca están en tu mazo de Villano: llegan cuando otro jugador usa la acción de Destino contra ti.</p>
+      <p>Se colocan en tu Reino <b>tapando acciones</b>, y esas acciones no se pueden usar hasta que el Héroe se mueva o sea vencido.</p>
+      <p>Tienen Fuerza (esquina inferior izquierda) y muchas veces una Habilidad que te complica el objetivo.</p>
+      <div class="simple-nota">Son los héroes buenos que vienen a molestarte. Se ponen encima de tus dibujitos y no te dejan usarlos.</div>
+    </div>
+  </details>
+</section>
+
+<!-- ============ GANAR ============ -->
+<section id="ganar" hidden>
+  <h2 class="seccion-titulo">Cómo se gana</h2>
+  <p class="seccion-intro">No se gana por puntos. Se gana cumpliendo tu objetivo secreto.</p>
+
+  <div class="panel">
+    <span class="etiqueta">Final de la partida</span>
+    <h3>En cuanto cumples tu Objetivo, ganas</h3>
+    <p>La partida termina en el instante en que un jugador cumple <b>todo</b> el Objetivo de su villano, tal y como está descrito en su Guía de Villano.</p>
+    <p>No importa dónde esté tu ficha ni cuántos Héroes queden en tu Reino.</p>
+    <div class="simple-nota">Cada villano quiere una cosa distinta. El primero que la consigue gana en ese mismo momento, y la partida se acaba.</div>
+  </div>
+
+  <div class="panel">
+    <span class="etiqueta">Consejo de mesa</span>
+    <h3>Lee tu Guía de Villano antes de empezar</h3>
+    <p>Cada villano se juega de forma muy distinta. La Guía explica su objetivo y qué cartas conviene buscar; la Carta de Referencia recuerda qué hace cada símbolo.</p>
+    <p>Al principio de la partida cada jugador lee su Objetivo en voz alta, para que todos sepan a quién frenar.</p>
+  </div>
+
+  <div class="panel">
+    <span class="etiqueta">Los 5 fallos que más se repiten</span>
+    <h3>Repasa esto en la primera partida</h3>
+    <p>1 · Quedarse en el mismo lugar. <b>Moverse es obligatorio.</b></p>
+    <p>2 · Usar una acción tapada por un Héroe. <b>No se puede.</b></p>
+    <p>3 · Robar cartas al momento. <b>Solo al final del turno, hasta cuatro.</b></p>
+    <p>4 · Vencer a un Héroe con Aliados de otro lugar. <b>Deben estar en la misma casilla.</b></p>
+    <p>5 · Repetir un símbolo del lugar. <b>Cada acción, una sola vez por turno.</b></p>
+  </div>
+</section>
+
+<!-- ============ VILLANOS ============ -->
+<section id="villanos" hidden>
+  <h2 class="seccion-titulo">Guía de cada villano</h2>
+  <p class="seccion-intro">Elige el tuyo. Cada uno gana de una forma distinta y usa cartas propias.</p>
+
+  <div class="picker" id="picker"></div>
+  <div id="villanoBox"></div>
+
+  <div class="panel">
+    <span class="etiqueta">Falta información</span>
+    <h3>Los demás villanos de la caja</h3>
+    <p>Aquí están los cuatro cuyas Guías tengo: <b>Príncipe Juan</b>, <b>Capitán Garfio</b>, <b>Maléfica</b> y <b>Úrsula</b>. Si me pasas fotos de las guías de la <b>Reina de Corazones</b> o de <b>Jafar</b>, las añado igual.</p>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz" hidden>
+  <h2 class="seccion-titulo">Reto: ¿te sabes las reglas?</h2>
+  <p class="seccion-intro">Seis preguntas. Ideal para hacerlo en voz alta antes de la primera partida.</p>
+  <div id="quizBox"></div>
+</section>
+
+</main>
+
+<footer>Guía de casa basada en el reglamento de Disney Villainous · Ravensburger</footer>
+
+<script>
+/* ---------- MODO SIMPLE ---------- */
+const btnModo = document.getElementById('btnModo');
+btnModo.addEventListener('click', () => {
+  const on = document.body.classList.toggle('simple');
+  btnModo.setAttribute('aria-pressed', on);
+});
+
+/* ---------- PESTAÑAS ---------- */
+const tabs = [...document.querySelectorAll('.tab')];
+tabs.forEach(t => t.addEventListener('click', () => {
+  tabs.forEach(o => o.setAttribute('aria-selected', o === t));
+  document.querySelectorAll('main > section').forEach(s => {
+    s.hidden = (s.id !== t.dataset.t);
+  });
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}));
+
+/* ---------- PREPARACIÓN ---------- */
+const PASOS = [
+  ['Elige tu villano', 'Toma su tablero (Reino), su ficha, su mazo de Villano, su mazo de Destino, su Guía de Villano y su Carta de Referencia.'],
+  ['Coloca tu Reino', 'Ponlo delante de ti. Tiene cuatro lugares. Pon tu ficha de villano sobre el retrato del personaje.'],
+  ['Prepara el mazo de Villano', 'Barájalo y déjalo boca abajo a la izquierda de tu tablero, con hueco al lado para la pila de descarte.'],
+  ['Roba cuatro cartas', 'Son tu mano inicial. Puedes mirarlas, pero no se las enseñas a nadie.'],
+  ['Prepara el mazo de Destino', 'Barájalo y ponlo boca abajo junto al de Villano, también con hueco para su descarte.'],
+  ['Pon el Caldero en el centro', 'Con todas las fichas de Poder dentro, al alcance de todos. Cada jugador coge 2 fichas para empezar.'],
+  ['Lee tu Objetivo en voz alta', 'Todos deben saber qué necesita conseguir cada villano para ganar.'],
+  ['Elegid quién empieza', 'Y a jugar.']
+];
+const cont = document.getElementById('pasos');
+PASOS.forEach((p, i) => {
+  const b = document.createElement('button');
+  b.className = 'paso';
+  b.innerHTML = `<span class="marca"><em>${i+1}</em></span><span><strong>${p[0]}</strong><span>${p[1]}</span></span>`;
+  b.addEventListener('click', () => { b.classList.toggle('hecho'); progreso(); });
+  cont.appendChild(b);
+});
+function progreso(){
+  const total = PASOS.length;
+  const hechos = document.querySelectorAll('.paso.hecho').length;
+  document.getElementById('barraFill').style.width = (hechos/total*100) + '%';
+  document.getElementById('barraTxt').textContent = hechos === total
+    ? '¡Mesa lista! Que empiece la maldad.'
+    : `${hechos} de ${total} listos`;
+}
+
+/* ---------- DEMOSTRACIÓN DEL TURNO ---------- */
+const lugares = [...document.querySelectorAll('.lugar')];
+const fases = [...document.querySelectorAll('.fase')];
+const narracion = document.getElementById('narracion');
+let fase = 1, pos = 0;
+
+const TEXTOS = {
+  1: '<b>Fase 1 — Mueve tu villano.</b> Elige cualquier otro lugar de tu tablero. Puede ser el de al lado o el del otro extremo, da igual.',
+  2: (n) => `<b>Fase 2 — Acciones del Lugar ${n+1}.</b> Puedes hacer todos los símbolos de esta casilla, en el orden que quieras y una vez cada uno. Los tapados por Destino no cuentan.`,
+  3: '<b>Fase 3 — Roba hasta tener 4 cartas.</b> Cuenta tu mano y repón del mazo de Villano. Ahora sí, pasa el turno.',
+  4: '<b>Fin del turno.</b> Le toca al siguiente villano. Pulsa «Reiniciar» para verlo otra vez.'
+};
+
+function pinta(){
+  fases.forEach(f => f.classList.toggle('on', +f.dataset.f === Math.min(fase,3)));
+  lugares.forEach((l,i) => l.classList.toggle('activo', i === pos));
+  narracion.innerHTML = (fase === 2) ? TEXTOS[2](pos) : TEXTOS[fase];
+}
+document.getElementById('btnTurno').addEventListener('click', () => {
+  if (fase === 1){
+    let nuevo;
+    do { nuevo = Math.floor(Math.random()*4); } while (nuevo === pos);
+    pos = nuevo;
+    fase = 2;
+  } else if (fase < 4){
+    fase++;
+  } else {
+    fase = 1;
+  }
+  pinta();
+});
+document.getElementById('btnReset').addEventListener('click', () => { fase = 1; pos = 0; pinta(); });
+pinta();
+
+/* ---------- GUÍAS DE VILLANO ---------- */
+const VILLANOS = [
+{
+  id:'juan', nombre:'Príncipe Juan', peli:'Robin Hood', ac:'#E0A83C',
+  objetivo:'Ten al menos 20 de Poder y a Robin Hood en La Cárcel.',
+  cita:'«Esta corona me da una sensación de poder.»',
+  resumen:'Es el villano más fácil de entender: acumula monedas y mete al zorro en la cárcel. Pero tiene que equilibrar guardar Poder con gastarlo.',
+  simple:'Junta 20 monedas y encierra a Robin Hood. Las dos cosas a la vez, no vale solo una.',
+  pasos:[
+    ['Junta Poder sin parar','Muévete a lugares con la acción de Ganar Poder de 1, 2 o 3. Además ganas Poder de los Héroes que tengas en tu Reino con cartas como Warrant, el Sheriff de Nottingham y Beautiful Lovely Taxes, y de los otros jugadores con Greed.','Cae en las casillas de monedas. Algunas de tus cartas también te dan monedas por cada héroe que tengas.'],
+    ['Ten Aliados listos para Vencer','Tu mazo de Destino tiene Steal from the Rich: te roba Poder y lo pone sobre un Héroe. Recuperas ese Poder cuando derrotas a ese Héroe, así que necesitas Aliados preparados. Little John además te resta 1 de Poder cada turno: quítalo de en medio pronto.','Los héroes te roban monedas. Si los derrotas, recuperas lo que te quitaron.'],
+    ['Encuentra a Robin Hood','Puede aparecer cuando un rival te ataca con Destino. Si no aparece, búscalo tú: juega Set a Trap o Cowardice, o derrota a Maid Marian (al vencerla, buscas a Robin Hood y lo juegas).','Si no sale solo, tienes cartas para ir a buscarlo.'],
+    ['Derrótalo y a la cárcel','Robin Hood tiene Fuerza 5 y, al ser revelado o encontrado, se juega obligatoriamente en Sherwood Forest (las demás cartas de Destino reveladas se descartan). Cuando lo derrotas no va al descarte: se mueve a La Cárcel. Ahí es donde lo necesitas.','Es el héroe más fuerte: hacen falta ayudantes que sumen 5. Al vencerlo no se tira, se va a la cárcel, que es justo lo que quieres.']
+  ],
+  cartas:[
+    ['Sheriff of Nottingham','Aliado · Fuerza 3','Antes de que el Príncipe Juan se mueva, puedes mover al Sheriff a cualquier lugar y ganar 1 de Poder si hay Héroes en su nuevo lugar.'],
+    ['Steal from the Rich','Destino · Efecto','Te quita 4 de Poder y lo pone sobre un Héroe. Recuperas ese Poder cuando ese Héroe es derrotado.'],
+    ['Little John','Destino · Héroe','Mientras esté en tu Reino, reduce en 1 el Poder que ganas con cada carta o acción.'],
+    ['Robin Hood','Destino · Héroe · Fuerza 5','Se juega siempre en Sherwood Forest. Al ser derrotado se mueve a La Cárcel en vez de descartarse.']
+  ],
+  avisos:['El error típico es llegar a 20 de Poder sin haber tocado a Robin Hood, o al revés. Necesitas las dos condiciones a la vez para ganar.']
+},
+{
+  id:'garfio', nombre:'Capitán Garfio', peli:'Peter Pan', ac:'#E0685F',
+  objetivo:'Derrota a Peter Pan en el Jolly Roger.',
+  cita:'«¡Doble de pólvora y mecha más corta!»',
+  resumen:'Un solo objetivo, pero en tres etapas: encontrar a Peter Pan, arrastrarlo hasta tu barco y vencerlo allí. No vale derrotarlo en otro sitio.',
+  simple:'Encuentra a Peter Pan, llévalo hasta tu barco y véncelo ahí. Solo cuenta si es en el barco.',
+  pasos:[
+    ['Encuentra a Peter Pan','Peter Pan está escondido en tu propio mazo de Destino. Puede salir cuando un rival te ataca con Destino, pero tú también puedes buscarlo: juega Digno Oponente, Obsesión o el Mapa de Nunca Jamás para revelar cartas de tu mazo de Destino.','Peter Pan está escondido en tu montón de cartas de héroes. Tienes cartas para ir a buscarlo sin esperar a nadie.'],
+    ['Aparece en el Escondite de los Niños Perdidos','Peter Pan solo puede jugarse ahí, nunca en otro lugar. Desde esa casilla empieza el viaje hasta tu barco.','Siempre aparece en la misma casilla: el escondite. Desde ahí tienes que traerlo.'],
+    ['Muévelo hasta el Jolly Roger','Usa la acción de Mover un Héroe de tu tablero para acercarlo de casilla en casilla. Si te falta esa acción donde la necesitas, juega el Artefacto Ingenioso: añade una acción de Mover un Héroe al lugar que quieras.','Va andando de casilla en casilla. Una casilla por acción, no puede saltar.'],
+    ['Véncelo en el barco','Ya en el Jolly Roger, derrótalo con la acción de Vencer usando tus Aliados. Si no tienes acción de Vencer donde la necesitas, el Cañón añade una a cualquier lugar. Ojo con Smee: en el Jolly Roger gana +2 de Fuerza.','En el barco lo derrotas con tus piratas. Smee es más fuerte justo ahí, así que guárdalo para el final.']
+  ],
+  cartas:[
+    ['Peter Pan','Destino · Héroe','Solo puede jugarse en el Escondite de los Niños Perdidos. Mientras el Mapa de Nunca Jamás esté en el Reino de Garfio, Peter Pan no puede moverse.'],
+    ['Mapa de Nunca Jamás','Ítem · Coste 4','Al jugarlo, busca a Peter Pan y juégalo.'],
+    ['Digno Oponente','Efecto · Coste 0','Ganas 2 de Poder y revelas cartas de tu mazo de Destino hasta encontrar un Héroe. Juégalo y descarta el resto.'],
+    ['Obsesión','Condición','En el turno de otro jugador, cuando ese jugador derrota a un Héroe, revelas cartas de tu mazo de Destino hasta encontrar un Héroe y lo juegas.'],
+    ['Bruto Pirata','Aliado · Fuerza 4','Sin habilidad extra. Tu Aliado más fuerte.'],
+    ['Partida de Abordaje','Aliado · Fuerza 2','Al hacer una acción de Vencer, puede usarse para derrotar a un Héroe de su lugar o de un lugar adyacente.'],
+    ['Smee','Aliado · Fuerza 2','Gana +2 de Fuerza si está en el Jolly Roger.'],
+    ['Artefacto Ingenioso','Ítem · Coste 2','Ese lugar gana una acción de Mover un Héroe.'],
+    ['Cañón','Ítem · Coste 2','Ese lugar gana una acción de Vencer.']
+  ],
+  avisos:['La trampa del Mapa: te sirve para encontrar a Peter Pan, pero mientras el Mapa siga en tu Reino, Peter Pan no se puede mover. Tendrás que deshacerte del Mapa para llevarlo al barco.','No basta con derrotar a Peter Pan: tiene que ser estando en el Jolly Roger. Si lo vences en otro lugar, no ganas.']
+},
+{
+  id:'malefica', nombre:'Maléfica', peli:'La Bella Durmiente', ac:'#63C98A',
+  objetivo:'Ten una Maldición en cada uno de los cuatro lugares de tu Reino.',
+  cita:'«Ahora ve con una maldición y sírveme bien.»',
+  resumen:'No necesita Poder ni cárceles: necesita cuatro Maldiciones en pie a la vez. El problema es mantenerlas, porque los Héroes las hacen caer.',
+  simple:'Pon una maldición en cada una de tus cuatro casillas, todas a la vez. Los héroes vienen a quitártelas.',
+  pasos:[
+    ['Reparte tus Aliados por el Reino','Los esbirros y el Cuervo son tus Aliados. Una Maldición solo se puede jugar en un lugar donde tengas un Aliado, así que primero hay que repartirlos por las cuatro casillas.','Primero coloca ayudantes en cada casilla. Sin ayudante no puedes maldecir ese sitio.'],
+    ['Juega Maldiciones','Cada tipo de Maldición da un beneficio distinto mientras está en tu Reino. Puedes tener varias en el mismo lugar y, una vez jugadas, moverlas con la acción de Mover un Ítem o Aliado.','Cada maldición hace algo distinto. Puedes moverlas después si te sobran en una casilla.'],
+    ['Defiéndelas de los Héroes','Las cartas de tu mazo de Destino y algunas acciones hacen que tus Maldiciones se descarten. Ten cuidado con Flora, Fauna, Primavera, el Príncipe Felipe y Aurora.','Los héroes buenos vienen a romper tus maldiciones. Hay que quitarlos de en medio.'],
+    ['Cierra el círculo antes que nadie','Si consigues tener una Maldición en los cuatro lugares a la vez, ganas. Bloquear a los demás también forma parte de tu plan.','Cuando las cuatro estén puestas al mismo tiempo, ganas.']
+  ],
+  cartas:[
+    ['Esbirro Siniestro','Aliado · Fuerza 3','Gana +1 de Fuerza si hay Maldiciones en su lugar.'],
+    ['Esbirro Salvaje','Aliado · Fuerza 4','Sin habilidad extra. Es tu músculo puro.'],
+    ['Esbirro Risueño','Aliado · Fuerza 1','Gana +1 de Fuerza por cada Héroe que haya en su lugar.'],
+    ['Forma de Dragón','Efecto · Coste 3','Derrota a un Héroe de Fuerza 3 o menos. Si una acción de Destino te apunta antes de tu siguiente turno, ganas 3 de Poder.'],
+    ['Malicia','Condición','En el turno de otro jugador, si ese jugador derrota a un Héroe de Fuerza 3 o más, puedes jugarla: derrotas tú a un Héroe de Fuerza 3 o menos.'],
+    ['Tiranía','Condición','En el turno de otro jugador, si tiene tres o más Aliados en su Reino, robas tres cartas y luego descartas tres. Te ayuda a encontrar Maldiciones.']
+  ],
+  avisos:['La Guía original añade una excepción sobre en qué lugar no se pueden jugar Maldiciones. La letra de la foto no se lee con seguridad, así que léela en vuestra Guía de Maléfica antes de la primera partida.','Para encontrar Maldiciones y Aliados rápido, usa la acción de Descartar: cuantas más cartas cicles, antes vuelven las buenas.']
+},
+{
+  id:'ursula', nombre:'Úrsula', peli:'La Sirenita', ac:'#B885E0',
+  objetivo:'Ten el Tridente y la Corona en la Guarida de Úrsula.',
+  cita:'«El mar y todo su botín se rendirán a mi poder.»',
+  resumen:'Es una carrera por encontrar dos objetos concretos y llevarlos a una casilla concreta. Su punto débil: no tiene acciones de Vencer en el tablero.',
+  simple:'Busca dos objetos, el tridente y la corona, y llévalos a tu cueva. Eso es todo.',
+  pasos:[
+    ['Encuentra el Tridente y la Corona','Son dos Ítems de tu mazo de Villano. La Corona solo puede jugarse en El Palacio y el Tridente solo en La Orilla. Hasta que salgan, no puedes avanzar.','Son dos cartas concretas de tu mazo. Cada una se pone en su casilla, no donde tú quieras.'],
+    ['Cicla tu mazo para encontrarlos','Torbellino, Adivinación y Oportunista te ayudan a sacar cartas. Moverte al lugar con la acción de Descartar y tirar varias cartas también hace que el mazo se recicle antes.','Si no te salen, tira las cartas malas: así el mazo se baraja de nuevo y vuelven a aparecer.'],
+    ['Llévalos a tu Guarida','Una vez jugados en el tablero, usa la acción de Mover un Ítem para acercarlos casilla a casilla hasta la Guarida de Úrsula. Recuerda: los Ítems solo se mueven a un lugar adyacente por acción.','Los objetos se mueven de casilla en casilla, poco a poco, hasta tu cueva.'],
+    ['Aparta a los Héroes con Contratos','Úrsula no tiene ninguna acción de Vencer en su tablero. Para derrotar Héroes debes jugar Contratos Vinculantes en los lugares: cada uno da a ese lugar una acción de Vencer de un solo uso, y al usarla el Contrato va al descarte.','Úrsula no sabe pelear sola. Necesita firmar un contrato en la casilla para poder derrotar a un héroe una única vez.']
+  ],
+  cartas:[
+    ['Corona','Ítem · Coste 2','Solo puede jugarse en El Palacio.'],
+    ['Tridente','Ítem · Coste 4','Solo puede jugarse en La Orilla.'],
+    ['Contrato Vinculante','Ítem · Coste 2','Cada versión se juega en un lugar concreto y le da una acción de Vencer de un solo uso. Al usarla, el Contrato se descarta.'],
+    ['Torbellino','Efecto · Coste 2','Roba cinco cartas a tu mano y después descarta cuatro.'],
+    ['Adivinación','Efecto · Coste 1','Revela cartas de tu mazo hasta encontrar un Contrato Vinculante, quédatelo y descarta el resto.'],
+    ['Oportunista','Efecto · Coste 1','Elige un Ítem o un Efecto de tu descarte y devuélvelo a tu mano.'],
+    ['Flotsam y Jetsam','Aliados','Una vez jugados, no se van del lado de Úrsula. Flotsam no se descarta cuando se usa para derrotar a un Héroe.']
+  ],
+  avisos:['Los Héroes Ariel, Tritón y Eric mueven Ítems y bloquean acciones. Si te mueven la Corona o el Tridente fuera de la Guarida, tienes que volver a acercarlos.']
+}
+];
+
+const picker = document.getElementById('picker');
+const villanoBox = document.getElementById('villanoBox');
+VILLANOS.forEach((v,i)=>{
+  const b=document.createElement('button');
+  b.innerHTML = `${v.nombre}<small>${v.peli}</small>`;
+  b.addEventListener('click',()=>muestraVillano(i));
+  picker.appendChild(b);
+});
+
+function muestraVillano(i){
+  const v = VILLANOS[i];
+  [...picker.children].forEach((b,j)=>{
+    b.classList.toggle('sel', j===i);
+    b.style.setProperty('--ac', v.ac);
+  });
+  const pasos = v.pasos.map(([t,txt,simple],n)=>`
+    <div class="panel">
+      <h3><span class="num">${n+1}</span>${t}</h3>
+      <p>${txt}</p>
+      <div class="simple-nota">${simple}</div>
+    </div>`).join('');
+  const cartas = v.cartas.map(([n,tipo,txt])=>`
+    <div class="carta-clave"><em>${tipo}</em><b>${n}</b><span>${txt}</span></div>`).join('');
+  const avisos = v.avisos.map(a=>`<div class="aviso">${a}</div>`).join('');
+
+  villanoBox.innerHTML = `
+    <div style="--ac:${v.ac}">
+      <div class="objetivo">
+        <p class="eyebrow">Objetivo de ${v.nombre}</p>
+        <h3>${v.objetivo}</h3>
+        <p class="cita">${v.cita}</p>
+      </div>
+      <div class="panel">
+        <span class="etiqueta">En una frase</span>
+        <p>${v.resumen}</p>
+        <div class="simple-nota">${v.simple}</div>
+      </div>
+      <div class="ruta">${pasos}</div>
+      <div class="panel">
+        <span class="etiqueta">Cartas que debes conocer</span>
+        <h3>Las importantes de ${v.nombre}</h3>
+        <div class="cartas-clave">${cartas}</div>
+        ${avisos}
+      </div>
+    </div>`;
+}
+muestraVillano(0);
+
+/* ---------- QUIZ ---------- */
+const PREGUNTAS = [
+  {
+    q: 'Estás en el Lugar 2 y ahí tienes las mejores acciones. ¿Puedes quedarte?',
+    o: ['Sí, si no quiero moverme', 'No, hay que moverse siempre', 'Solo si pago 1 de Poder'],
+    ok: 1,
+    exp: 'Moverse es obligatorio. Tienes que ir a un lugar distinto, aunque el nuevo te guste menos.'
+  },
+  {
+    q: 'Juegas una carta y te quedan 3 en la mano. ¿Robas ahora?',
+    o: ['Sí, robo 1 al momento', 'No, repongo al final del turno', 'Robo solo si me quedo sin cartas'],
+    ok: 1,
+    exp: 'Se repone hasta cuatro cartas solo al final de tu turno.'
+  },
+  {
+    q: 'Un Héroe de Fuerza 4 está en el Lugar 1. Tienes Aliados de Fuerza 2 y 3, pero en el Lugar 3. ¿Puedes vencerlo?',
+    o: ['Sí, 2+3 son 5 y basta', 'No, tienen que estar en el mismo lugar que el Héroe'],
+    ok: 1,
+    exp: 'Los Aliados solo pueden vencer a un Héroe si están en su misma casilla. Primero muévelos.'
+  },
+  {
+    q: 'Un Héroe tapa dos símbolos de tu Lugar 4. ¿Puedes usar esos símbolos?',
+    o: ['Sí, pagando Poder', 'No, hasta que el Héroe se vaya', 'Sí, pero solo una vez'],
+    ok: 1,
+    exp: 'Las acciones tapadas están bloqueadas. Muévelo o véncelo para liberarlas.'
+  },
+  {
+    q: 'Usas la acción de Destino contra tu hermana. ¿Qué haces?',
+    o: ['Robo 2 de mi mazo de Destino', 'Revelo las 2 primeras de SU mazo de Destino y elijo una para jugar contra ella', 'Le robo una carta de la mano'],
+    ok: 1,
+    exp: 'Siempre se usa el mazo de Destino del oponente al que atacas. Revelas dos, eliges una y la otra va a su descarte.'
+  },
+  {
+    q: '¿Cuándo termina la partida?',
+    o: ['Cuando se acaban los mazos', 'Cuando un villano cumple su Objetivo', 'Después de 10 rondas'],
+    ok: 1,
+    exp: 'En cuanto alguien cumple entero el Objetivo de su Guía de Villano, gana y la partida acaba ahí mismo.'
+  }
+];
+let qi = 0, aciertos = 0;
+const quizBox = document.getElementById('quizBox');
+
+function pintaPregunta(){
+  if (qi >= PREGUNTAS.length){
+    const msg = aciertos === 6 ? 'Villano maestro' : aciertos >= 4 ? 'Aprendiz peligroso' : 'Repasa la guía';
+    quizBox.innerHTML = `<div class="panel"><div class="medalla"><b>${aciertos} / 6</b>${msg}</div></div>`;
+    const btn = document.createElement('button');
+    btn.className = 'boton';
+    btn.textContent = 'Jugar otra vez';
+    btn.addEventListener('click', () => { qi = 0; aciertos = 0; pintaPregunta(); });
+    quizBox.appendChild(btn);
+    return;
+  }
+  const p = PREGUNTAS[qi];
+  quizBox.innerHTML = `<div class="panel">
+      <p class="marcador">Pregunta ${qi+1} de ${PREGUNTAS.length} · Aciertos: ${aciertos}</p>
+      <p class="quiz-p">${p.q}</p>
+      <div id="ops"></div>
+      <div id="fb"></div>
+    </div>`;
+  const ops = document.getElementById('ops');
+  p.o.forEach((texto, i) => {
+    const b = document.createElement('button');
+    b.className = 'opcion';
+    b.textContent = texto;
+    b.addEventListener('click', () => responde(i, b));
+    ops.appendChild(b);
+  });
+}
+function responde(i, btn){
+  const p = PREGUNTAS[qi];
+  const botones = [...document.querySelectorAll('#ops .opcion')];
+  botones.forEach(b => b.disabled = true);
+  botones[p.ok].classList.add('bien');
+  if (i === p.ok){ aciertos++; } else { btn.classList.add('mal'); }
+  const fb = document.getElementById('fb');
+  fb.innerHTML = `<div class="feedback">${i === p.ok ? '✓ Correcto. ' : '✕ Casi. '}${p.exp}</div>`;
+  const sig = document.createElement('button');
+  sig.className = 'boton';
+  sig.style.marginTop = '12px';
+  sig.textContent = qi === PREGUNTAS.length - 1 ? 'Ver resultado' : 'Siguiente pregunta →';
+  sig.addEventListener('click', () => { qi++; pintaPregunta(); });
+  fb.appendChild(sig);
+}
+pintaPregunta();
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+Objetivo del Juego En Disney Villainous, cada jugador asume el papel de un villano de Disney único con su propio objetivo especial inspirado en sus películas clásicas
+. El primer jugador en completar su objetivo gana la partida
+.
+Preparación del Juego
+Elige a tu villano y toma su peón (mover), tablero de reino, mazo de villano, mazo de destino (fate), guía de villano y carta de referencia
+.
+Coloca tu reino frente a ti, sitúa tu peón en tu retrato y pon tus mazos de villano y de destino (ambos barajados) a la izquierda de tu reino
+.
+Llena el Caldero con fichas de poder y colócalo en el centro de la mesa
+.
+Roba 4 cartas de tu mazo de villano para formar tu mano inicial
+.
+Elige al jugador inicial y entrega a cada participante dos fichas de poder en orden de turno
+.
+Cada jugador debe leer su objetivo en voz alta
+.
+Estructura del Turno En tu turno, debes realizar obligatoriamente tres pasos en orden
+:
+Mover tu villano: Traslada tu peón de su ubicación actual a una ubicación diferente dentro de tu reino
+.
+Realizar acciones: Lleva a cabo las acciones disponibles en la nueva ubicación a través de sus iconos
+. Puedes realizarlas en el orden que prefieras y todas son opcionales
+.
+Robar cartas: Al final de tu turno, si tienes menos de cuatro cartas en la mano, roba de tu mazo de villano hasta volver a tener cuatro
+. No puedes robar cartas en ningún otro momento del turno, incluso si descartas durante el mismo
+.
+Acciones Disponibles en el Reino Los iconos en las ubicaciones de tu reino te permiten realizar las siguientes acciones
+:
+Recolectar Poder: Toma del caldero tantas fichas de poder como indique el número del icono y colócalas en tu retrato
+. El poder es vital para jugar cartas y activar habilidades
+.
+Jugar una Carta: Juega una carta de tu mano pagando su costo de poder (indicado en la esquina superior izquierda) por cada símbolo de "jugar carta" en tu ubicación
+. Las cartas de condición no requieren esta acción, ya que se juegan inmediatamente durante el turno de un oponente si se cumple el requisito indicado y luego se descartan
+.
+Reubicar: Mueve a uno de tus aliados o un objeto de una ubicación de tu reino a una ubicación adyacente
+.
+Mover un Héroe: Mueve a un héroe que esté en tu reino a una ubicación adyacente
+.
+Vencer (Vanquish): Usa la fuerza de tus aliados para derrotar a los héroes
+. Debes igualar o superar la fuerza del héroe (esquina inferior izquierda) con la fuerza colectiva de tus aliados en esa ubicación
+. Tras vencerlo, tanto el héroe como los aliados utilizados se colocan en sus respectivos descartes
+.
+Descartar Cartas: Descarta tantas cartas como quieras boca arriba en tu pila de descarte para conseguir nuevas opciones en tu próximo turno
+.
+Destino (Fate): Elige a un oponente como objetivo, revela las dos cartas superiores de su mazo de destino, juega una de ellas en su reino para frustrar sus planes y descarta la otra
+. El mazo de destino contiene héroes que bloquean acciones y estorban al villano
+.
+Fin de la Partida y Reglas Adicionales
+Si tu mazo de villano se agota, baraja tu pila de descarte para formar un nuevo mazo y seguir robando
+.
+El juego continúa en el sentido de las agujas del reloj hasta que un villano complete su objetivo
+.

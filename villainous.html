@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#06030c">
+<title>Disney Villainous — Guia de Villanos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+:root{
+  --bg:#06030c;
+  --ink:#ede8db;
+  --ink-dim:#9a9087;
+  --gold:#c9a24a;
+  --gold-lt:#e2c785;
+  --surface:rgba(255,255,255,0.055);
+  --surface-hi:rgba(255,255,255,0.09);
+  --border:rgba(255,255,255,0.1);
+  --nav-h:62px;
+  --accent:var(--gold);
+  --accent2:#6b4000;
+
+  --t-efecto:#3fbf6b;
+  --t-aliado:#e2593f;
+  --t-item:#4aa9d6;
+  --t-condicion:#d84c9e;
+  --t-heroe:#e0b64b;
+  --t-maldicion:#9b6fd6;
+}
+*,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{height:100%;-webkit-text-size-adjust:100%}
+body{margin:0;padding:0;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:'EB Garamond',Georgia,serif;font-size:17px;line-height:1.55}
+
+/* ===== PAGES ===== */
+.page{position:fixed;inset:0;bottom:var(--nav-h);overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;overscroll-behavior:contain}
+.page.active{display:block}
+.page::-webkit-scrollbar{width:2px}
+.page::-webkit-scrollbar-track{background:transparent}
+.page::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.14);border-radius:2px}
+
+/* ===== BOTTOM NAV ===== */
+.bnav{
+  position:fixed;bottom:0;left:0;right:0;
+  height:var(--nav-h);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  background:rgba(4,2,9,0.97);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-top:1px solid rgba(255,255,255,0.08);
+  display:flex;z-index:200
+}
+.nbtn{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  border:none;background:transparent;color:rgba(255,255,255,0.3);cursor:pointer;padding:6px 2px;
+  transition:color .2s;position:relative
+}
+.nbtn::after{
+  content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:0;height:2px;background:var(--gold);border-radius:2px 2px 0 0;transition:width .2s
+}
+.nbtn.active{color:var(--gold)}
+.nbtn.active::after{width:28px}
+.nbtn .nico{font-size:21px;line-height:1}
+.nbtn .nlabel{font-family:'Cinzel',serif;font-size:8px;letter-spacing:.07em;text-transform:uppercase;line-height:1;margin-top:1px}
+
+/* ===== VILLAIN HERO ===== */
+.v-hero{
+  position:relative;width:100%;
+  height:min(72vw, 68vh, 420px);
+  background-size:cover;background-position:center top;overflow:hidden;flex-shrink:0
+}
+.v-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(6,3,12,0.25) 0%,
+    transparent 30%,
+    rgba(6,3,12,0.55) 60%,
+    var(--bg) 100%
+  )
+}
+.v-content{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:0 18px 16px;z-index:2
+}
+.v-eyebrow{
+  font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 5px;
+  text-shadow:0 1px 8px rgba(0,0,0,0.9)
+}
+.v-name{
+  font-family:'Cinzel Decorative',serif;font-weight:900;
+  font-size:clamp(22px,7.5vw,40px);line-height:1.08;margin:0 0 9px;color:#fff;
+  text-shadow:0 2px 20px rgba(0,0,0,0.95),0 0 40px var(--accent2)
+}
+.v-quote{
+  font-style:italic;font-size:14px;color:rgba(255,255,255,0.7);
+  border-left:3px solid var(--accent);padding-left:11px;margin:0;
+  line-height:1.4;text-shadow:0 1px 8px rgba(0,0,0,0.8)
+}
+
+/* ===== CONTENT ===== */
+.content{padding:14px 16px 28px}
+
+/* ===== OBJECTIVE ===== */
+.obj-card{
+  background:linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03));
+  border:1px solid var(--border);border-left:4px solid var(--accent);
+  border-radius:12px;padding:13px 15px;margin-bottom:14px
+}
+.clabel{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px
+}
+.obj-text{margin:0;font-size:15px;color:var(--ink)}
+
+/* ===== SECTION DIVIDER ===== */
+.sdiv{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-dim);
+  margin:0 0 10px;display:flex;align-items:center;gap:8px
+}
+.sdiv::before,.sdiv::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ===== LOCATIONS ===== */
+.locs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.loc-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:10px 12px;display:flex;align-items:center;gap:9px
+}
+.loc-ico{font-size:21px;flex:none}
+.loc-es{font-family:'Cinzel',serif;font-size:12.5px;color:var(--ink);line-height:1.2}
+.loc-en{font-size:10.5px;color:var(--ink-dim);font-style:italic;display:block}
+
+/* ===== INFO BLOCKS ===== */
+.iblock{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:14px 15px;margin-bottom:12px
+}
+.iblock-title{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 9px;
+  display:flex;align-items:center;gap:7px
+}
+.iblock-title .ii{font-size:16px}
+.iblock p{margin:0;font-size:15px;color:#d0cbbf;line-height:1.6}
+.iblock.special{border-left:4px solid var(--t-maldicion)}
+
+/* ===== CARD SECTION ===== */
+.ctabs{
+  display:flex;background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:4px;margin-bottom:11px;gap:4px
+}
+.ctab{
+  flex:1;padding:9px 5px;border:none;background:transparent;color:var(--ink-dim);
+  font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.04em;
+  border-radius:7px;cursor:pointer;transition:all .15s;text-align:center;line-height:1.3
+}
+.ctab.active{background:var(--accent);color:#100c07;font-weight:700}
+
+.sbar{position:relative;margin-bottom:9px}
+.sbar input{
+  width:100%;background:var(--surface);border:1px solid var(--border);color:var(--ink);
+  padding:10px 12px 10px 34px;border-radius:10px;font-family:'EB Garamond',serif;
+  font-size:15px;-webkit-appearance:none;appearance:none
+}
+.sbar input::placeholder{color:var(--ink-dim)}
+.sbar input:focus{outline:none;border-color:var(--accent)}
+.sico{
+  position:absolute;left:11px;top:50%;transform:translateY(-50%);
+  font-size:14px;opacity:.4;pointer-events:none
+}
+
+.fchips{
+  display:flex;gap:6px;overflow-x:auto;padding-bottom:9px;
+  margin-bottom:9px;scrollbar-width:none
+}
+.fchips::-webkit-scrollbar{display:none}
+.fchip{
+  flex:none;padding:5px 12px;border-radius:999px;border:1px solid var(--border);
+  background:var(--surface);color:var(--ink-dim);font-family:'Cinzel',serif;
+  font-size:10px;letter-spacing:.04em;cursor:pointer;user-select:none;
+  white-space:nowrap;transition:all .15s;display:flex;align-items:center;gap:5px
+}
+.fchip .fdot{width:7px;height:7px;border-radius:50%;flex:none}
+.fchip.active{color:#100c07;border-color:transparent}
+
+/* ===== CARD ITEMS ===== */
+.clist{display:flex;flex-direction:column;gap:7px}
+.vcard{
+  background:var(--surface-hi);border:1px solid var(--border);
+  border-radius:10px;overflow:hidden
+}
+.vcard-head{
+  padding:11px 13px;display:flex;align-items:flex-start;gap:8px;
+  cursor:pointer;user-select:none
+}
+.vcard-main{flex:1;min-width:0}
+.vcard-es{
+  font-family:'Cinzel',serif;font-size:13px;color:var(--ink);
+  line-height:1.25;margin-bottom:2px
+}
+.vcard-en{font-size:11px;font-style:italic;color:var(--ink-dim)}
+.vcard-stats{display:flex;gap:10px;margin-top:5px}
+.vstat{font-size:11px;color:var(--ink-dim);display:flex;align-items:center;gap:3px}
+.vstat b{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:.05em;color:var(--gold);text-transform:uppercase}
+.tbadge{
+  padding:3px 9px;border-radius:999px;font-size:9.5px;
+  font-family:'Cinzel',serif;letter-spacing:.05em;font-weight:700;
+  color:#100c07;flex:none;align-self:flex-start;white-space:nowrap
+}
+.vchev{
+  flex:none;align-self:center;color:var(--ink-dim);
+  font-size:11px;transition:transform .22s;margin-left:4px
+}
+.vcard.open .vchev{transform:rotate(180deg)}
+.vcard-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.vcard.open .vcard-body{max-height:500px}
+.vcard-text{
+  padding:10px 13px 14px;font-size:14.5px;line-height:1.6;color:#d0cbbf;
+  border-top:1px dashed rgba(255,255,255,0.08)
+}
+
+/* ===== KEYWORD COLORS ===== */
+.kh{color:#e0b64b;font-weight:600}
+.ka{color:#e2593f;font-weight:600}
+.ki{color:#4aa9d6;font-weight:600}
+.ke{color:#3fbf6b;font-weight:600}
+.kc{color:#d84c9e;font-weight:600}
+.km{color:#9b6fd6;font-weight:600}
+
+/* ===== WARN BOX ===== */
+.warn-box{
+  background:rgba(216,131,74,0.09);border:1px dashed rgba(216,131,74,0.45);
+  border-radius:10px;padding:12px 14px;font-size:13.5px;color:#f0c9a1;
+  margin-bottom:12px;line-height:1.5
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-msg{
+  text-align:center;color:var(--ink-dim);font-style:italic;
+  padding:28px 0 12px;font-size:14px
+}
+
+/* ===== RULES PAGE ===== */
+.rules-hero{
+  padding:52px 20px 28px;text-align:center;
+  background:radial-gradient(ellipse 90% 55% at 50% 0%,#1e0a38 0%,var(--bg) 70%)
+}
+.rules-icon{font-size:54px;display:block;margin-bottom:14px;filter:drop-shadow(0 0 24px rgba(201,162,74,0.4))}
+.rules-title{
+  font-family:'Cinzel Decorative',serif;font-weight:900;
+  font-size:clamp(16px,5vw,26px);color:var(--gold-lt);margin:0 0 8px;
+  line-height:1.2;text-shadow:0 0 30px rgba(201,162,74,0.35)
+}
+.rules-sub{color:var(--ink-dim);font-size:14px;font-style:italic;margin:0}
+.rcontent{padding:14px 16px 28px}
+.rcard{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:15px 16px;margin-bottom:12px
+}
+.rcard-title{
+  font-family:'Cinzel',serif;font-size:12px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--gold);margin:0 0 12px;
+  display:flex;align-items:center;gap:8px
+}
+.rcard-title .ri{font-size:18px}
+.rcard p,.rcard li{font-size:15px;color:#d0cbbf;line-height:1.6;margin:0 0 8px}
+.rcard ul{margin:0;padding-left:18px}
+.rcard li{margin-bottom:5px}
+.rcard li:last-child{margin-bottom:0}
+
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{display:flex;align-items:flex-start;gap:12px}
+.step-n{
+  width:28px;height:28px;border-radius:50%;background:var(--gold);
+  color:#100c07;font-family:'Cinzel',serif;font-size:13px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex:none;margin-top:2px
+}
+.step-t{font-family:'Cinzel',serif;font-size:13px;color:var(--ink);margin:0 0 3px}
+.step-d{font-size:14.5px;color:#c8c3b5;margin:0;line-height:1.5}
+
+.arow{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.06)
+}
+.arow:last-child{border-bottom:none;padding-bottom:0}
+.aico{font-size:22px;flex:none;width:30px;text-align:center}
+.aname{font-family:'Cinzel',serif;font-size:12.5px;color:var(--ink);margin:0 0 3px}
+.adesc{font-size:14px;color:#c8c3b5;margin:0;line-height:1.5}
+
+/* ===== LEGEND MODAL ===== */
+.moverlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:300;
+  display:none;align-items:flex-end;justify-content:center
+}
+.moverlay.show{display:flex}
+.msheet{
+  background:#140e1e;border:1px solid rgba(255,255,255,0.12);border-bottom:none;
+  border-radius:20px 20px 0 0;width:100%;max-height:80vh;overflow-y:auto;
+  padding:18px 18px 36px;position:relative;animation:slideup .25s ease
+}
+@keyframes slideup{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.mhandle{width:36px;height:4px;background:rgba(255,255,255,0.18);border-radius:2px;margin:0 auto 16px}
+.mtitle{
+  font-family:'Cinzel',serif;font-size:14px;letter-spacing:.07em;
+  color:var(--gold-lt);text-transform:uppercase;margin:0 0 18px;text-align:center
+}
+.msection-title{
+  font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold);margin:0 0 8px
+}
+.msection{margin-bottom:18px}
+.type-row{
+  display:flex;align-items:center;gap:10px;padding:8px 12px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:9px;margin-bottom:6px;font-size:14px;color:#d0cbbf
+}
+.tdot{width:10px;height:10px;border-radius:50%;flex:none}
+.kv-row{
+  display:flex;gap:8px;padding:5px 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);font-size:13.5px
+}
+.kvk{color:var(--gold-lt);min-width:130px;flex:none}
+.kvv{color:#c8c3b5}
+.mclose{
+  position:absolute;top:16px;right:18px;background:rgba(255,255,255,0.08);
+  border:none;color:var(--ink-dim);width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px
+}
+
+/* ===== LEGEND FAB ===== */
+.lfab{
+  position:sticky;top:12px;float:right;z-index:50;
+  margin:12px 16px 0 0;
+  background:rgba(15,10,25,0.92);border:1px solid rgba(201,162,74,0.35);
+  color:var(--gold);font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.04em;
+  padding:7px 13px;border-radius:999px;cursor:pointer;backdrop-filter:blur(10px);white-space:nowrap
+}
+.lfab:hover{border-color:var(--gold)}
+
+/* ===== RESPONSIVE ===== */
+@media(min-width:560px){
+  .locs-grid{grid-template-columns:repeat(4,1fr)}
+  .clist{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;align-items:start}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== RULES PAGE ===== -->
+<section id="page-reglas" class="page active">
+  <div class="rules-hero">
+    <span class="rules-icon">&#127858;</span>
+    <h1 class="rules-title">Disney Villainous</h1>
+    <p class="rules-sub">Reglas completas del juego</p>
+  </div>
+  <div class="rcontent">
+
+    <div class="rcard">
+      <div class="rcard-title"><span class="ri">&#127942;</span>Objetivo del Juego</div>
+      <p>Cada jugador asume el papel de un villano de Disney con su propio objetivo especial inspirado en su pelicula. <strong>El primer jugador en completar su objetivo gana la partida.</strong></p>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-title"><span class="ri">&#9878;&#65039;</span>Preparacion</div>
+      <ul>
+        <li>Elige a tu villano y toma su peon, tablero de reino, mazo de villano, mazo de destino, guia de villano y carta de referencia.</li>
+        <li>Coloca tu reino frente a ti. Situa tu peon en tu retrato. Coloca tus mazos de villano y destino (barajados) a la izquierda de tu reino.</li>
+        <li>Llena el Caldero con fichas de poder y coloca en el centro de la mesa.</li>
+        <li>Roba 4 cartas de tu mazo de villano para formar tu mano inicial.</li>
+        <li>Elige al jugador inicial y entrega dos fichas de poder en orden de turno.</li>
+        <li>Cada jugador lee su objetivo en voz alta.</li>
+      </ul>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-title"><span class="ri">&#128260;</span>Estructura del Turno</div>
+      <p>En tu turno debes realizar <strong>tres pasos obligatorios</strong> en orden:</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div>
+            <p class="step-t">Mover tu villano</p>
+            <p class="step-d">Traslada tu peon de su ubicacion actual a una ubicacion diferente dentro de tu reino.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div>
+            <p class="step-t">Realizar acciones</p>
+            <p class="step-d">Lleva a cabo las acciones disponibles en la nueva ubicacion segun sus iconos. Puedes realizarlas en el orden que prefieras y todas son opcionales.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div>
+            <p class="step-t">Robar cartas</p>
+            <p class="step-d">Al final del turno, si tienes menos de 4 cartas en la mano, roba de tu mazo de villano hasta tener 4. No puedes robar en ningun otro momento del turno.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-title"><span class="ri">&#9878;&#65039;</span>Acciones Disponibles</div>
+      <div class="arow">
+        <div class="aico">&#128176;</div>
+        <div><div class="aname">Recolectar Poder</div><div class="adesc">Toma del caldero tantas fichas de poder como indique el numero del icono y colocalas en tu retrato. El poder es vital para jugar cartas y activar habilidades.</div></div>
+      </div>
+      <div class="arow">
+        <div class="aico">&#127183;</div>
+        <div><div class="aname">Jugar una Carta</div><div class="adesc">Juega una carta de tu mano pagando su costo de poder por cada simbolo de "jugar carta" en tu ubicacion. Las cartas de condicion no requieren esta accion.</div></div>
+      </div>
+      <div class="arow">
+        <div class="aico">&#128260;</div>
+        <div><div class="aname">Reubicar</div><div class="adesc">Mueve uno de tus aliados o un objeto de una ubicacion a una ubicacion adyacente.</div></div>
+      </div>
+      <div class="arow">
+        <div class="aico">&#128694;</div>
+        <div><div class="aname">Mover un Heroe</div><div class="adesc">Mueve a un heroe que este en tu reino a una ubicacion adyacente.</div></div>
+      </div>
+      <div class="arow">
+        <div class="aico">&#9876;&#65039;</div>
+        <div><div class="aname">Vencer (Vanquish)</div><div class="adesc">Usa la fuerza de tus aliados para derrotar a los heroes. Debes igualar o superar la fuerza del heroe con la fuerza colectiva de tus aliados en esa ubicacion. Tras vencerlo, tanto el heroe como los aliados usados van al descarte.</div></div>
+      </div>
+      <div class="arow">
+        <div class="aico">&#128197;</div>
+        <div><div class="aname">Descartar Cartas</div><div class="adesc">Descarta tantas cartas como quieras boca arriba en tu pila de descarte para conseguir nuevas opciones en tu proximo turno.</div></div>
+      </div>
+      <div class="arow">
+        <div class="aico">&#9889;</div>
+        <div><div class="aname">Destino (Fate)</div><div class="adesc">Elige a un oponente, revela las dos cartas superiores de su mazo de destino, juega una de ellas en su reino para frustrar sus planes y descarta la otra. El mazo de destino contiene heroes que bloquean acciones y estorban al villano.</div></div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="rcard-title"><span class="ri">&#128214;</span>Reglas Adicionales</div>
+      <ul>
+        <li>Si tu mazo de villano se agota, baraja tu pila de descarte para formar un nuevo mazo y seguir robando.</li>
+        <li>El juego continua en sentido horario hasta que un villano complete su objetivo.</li>
+        <li>Las cartas de condicion se juegan durante el turno de un oponente si se cumple el requisito indicado, luego se descartan.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== VILLAIN PAGES (generated by JS) ===== -->
+<section id="page-garfio" class="page"></section>
+<section id="page-malefica" class="page"></section>
+<section id="page-juan" class="page"></section>
+<section id="page-ursula" class="page"></section>
+
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="bnav">
+  <button class="nbtn active" data-page="reglas" onclick="nav('reglas')">
+    <span class="nico">&#128218;</span>
+    <span class="nlabel">Reglas</span>
+  </button>
+  <button class="nbtn" data-page="garfio" onclick="nav('garfio')">
+    <span class="nico">&#129405;</span>
+    <span class="nlabel">Garfio</span>
+  </button>
+  <button class="nbtn" data-page="malefica" onclick="nav('malefica')">
+    <span class="nico">&#129409;</span>
+    <span class="nlabel">Malefica</span>
+  </button>
+  <button class="nbtn" data-page="juan" onclick="nav('juan')">
+    <span class="nico">&#128081;</span>
+    <span class="nlabel">Juan</span>
+  </button>
+  <button class="nbtn" data-page="ursula" onclick="nav('ursula')">
+    <span class="nico">&#128025;</span>
+    <span class="nlabel">Ursula</span>
+  </button>
+</nav>
+
+<!-- ===== LEGEND MODAL ===== -->
+<div class="moverlay" id="legend" onclick="if(event.target===this)closeLegend()">
+  <div class="msheet">
+    <button class="mclose" onclick="closeLegend()">&#10005;</button>
+    <div class="mhandle"></div>
+    <div class="mtitle">Simbologia y Palabras Clave</div>
+
+    <div class="msection">
+      <div class="msection-title">Tipos de carta</div>
+      <div class="type-row"><span class="tdot" style="background:var(--t-aliado)"></span>Aliado &mdash; personaje que ayuda al villano</div>
+      <div class="type-row"><span class="tdot" style="background:var(--t-item)"></span>Item &mdash; objeto con efecto o accion</div>
+      <div class="type-row"><span class="tdot" style="background:var(--t-efecto)"></span>Efecto &mdash; accion de un solo uso</div>
+      <div class="type-row"><span class="tdot" style="background:var(--t-condicion)"></span>Condicion &mdash; se juega en respuesta a algo</div>
+      <div class="type-row"><span class="tdot" style="background:var(--t-heroe)"></span>Heroe &mdash; carta del mazo de Destino rival</div>
+      <div class="type-row"><span class="tdot" style="background:var(--t-maldicion)"></span>Maldicion &mdash; carta especial de Malefica</div>
+    </div>
+
+    <div class="msection">
+      <div class="msection-title">Marcas de traduccion</div>
+      <div class="kv-row"><span class="kvk">(T)</span><span class="kvv">Traduccion directa del ingles</span></div>
+      <div class="kv-row"><span class="kvk">(C)</span><span class="kvv">Edicion castellana de Villainous</span></div>
+      <div class="kv-row"><span class="kvk">(P)</span><span class="kvv">Doblaje latino oficial de la pelicula</span></div>
+    </div>
+
+    <div class="msection">
+      <div class="msection-title">Vocabulario (EN &rarr; ES)</div>
+      <div class="kv-row"><span class="kvk">Card / Deck / Hand</span><span class="kvv">Carta / Mazo / Mano</span></div>
+      <div class="kv-row"><span class="kvk">Realm / Location</span><span class="kvv">Reino / Locacion</span></div>
+      <div class="kv-row"><span class="kvk">Ally / Item / Effect</span><span class="kvv">Aliado / Item / Efecto</span></div>
+      <div class="kv-row"><span class="kvk">Play / Pay / Cost</span><span class="kvv">Jugar / Pagar / Costo</span></div>
+      <div class="kv-row"><span class="kvk">Draw / Discard / Reveal</span><span class="kvv">Tomar / Descartar / Revelar</span></div>
+      <div class="kv-row"><span class="kvk">Fate / Strength / Vanquish</span><span class="kvv">Destino / Fuerza / Vencer</span></div>
+      <div class="kv-row"><span class="kvk">Activate / Attach / Move</span><span class="kvv">Activar / Unir / Mover</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================== DATA ====================
+const VILLAINS = {
+  garfio:{
+    name:"Capitan Garfio",
+    sub:"El Terror de Nunca Jamas",
+    image:"hook.jpg",
+    imagePos:"center center",
+    accent:"#c87941",
+    accent2:"rgba(139,26,0,0.7)",
+    heroOverlay:"linear-gradient(to bottom, rgba(6,3,12,0.2) 0%, transparent 35%, rgba(6,3,12,0.7) 65%, #06030c 100%)",
+    quote:"&laquo;&iexcl;Dupliquen la polvoray acorten la mecha!&raquo;",
+    objetivo:"Derrota a Peter Pan en el Jolly Roger.",
+    locaciones:[
+      {es:"Jolly Roger",en:"Jolly Roger",ico:"&#128674;"},
+      {es:"Roca Calavera",en:"Skull Rock",ico:"&#128128;"},
+      {es:"Laguna de las Sirenas",en:"Mermaid Lagoon",ico:"&#129500;&#8205;&#9792;&#65039;"},
+      {es:"Arbol del Ahorcado",en:"Hangman's Tree",ico:"&#127795;"}
+    ],
+    jugabilidad:"Al inicio del juego, El Arbol del Ahorcado esta bloqueado hasta que el Mapa de Nunca Jamas es jugado. Primero debes buscar a Peter Pan en tu mazo de Destino y jugarlo al Arbol del Ahorcado; al mismo tiempo, debes jugar el Mapa de Nunca Jamas para desbloquear el Arbol del Ahorcado y poder mover a Peter Pan hasta el Jolly Roger, donde debes derrotarlo usando a tus Aliados para ganar.",
+    especial:null,
+    incompleta:false,
+    villano:[
+      {es:"!Si, Senor!",en:"Aye, Aye, Sir!",costo:"1",fuerza:"-",tipo:"Efecto",texto:"Mueve a un <span class='ka'>Aliado</span> a una locacion adyacente desbloqueada. Ese <span class='ka'>Aliado</span> obtiene +2 de Fuerza hasta el final de tu turno."},
+      {es:"Grupo de Abordaje",en:"Boarding Party",costo:"2",fuerza:"2",tipo:"Aliado",texto:"Al realizar una accion de Vencer, el Grupo de Abordaje puede ser usado para derrotar a un <span class='kh'>Heroe</span> en su locacion o una locacion adyacente desbloqueada."},
+      {es:"Canon",en:"Cannon",costo:"2",fuerza:"-",tipo:"Item",texto:"Esta locacion obtiene: Accion de Vencer."},
+      {es:"Astucia",en:"Cunning",costo:"-",fuerza:"-",tipo:"Condicion",texto:"Durante su turno, si otro jugador tiene a un <span class='ka'>Aliado</span> con una Fuerza de 4 o mas en su Reino, puedes jugar Astucia. Juega a un <span class='ka'>Aliado</span> de tu mano gratuitamente."},
+      {es:"Sable",en:"Cutlass",costo:"1",fuerza:"+2",tipo:"Item",texto:"Cuando el Sable es jugado, unelo a un <span class='ka'>Aliado</span>. Ese <span class='ka'>Aliado</span> obtiene +2 de Fuerza."},
+      {es:"Darles un Susto",en:"Give Them a Scare",costo:"1",fuerza:"-",tipo:"Efecto",texto:"Mira las dos cartas de encima de tu mazo de Destino. Descarta ambas cartas o regrésalas encima en cualquier orden."},
+      {es:"Estuche de Garfio",en:"Hook's Case",costo:"2",fuerza:"-",tipo:"Item",texto:"Esta locacion obtiene: Accion de Ganar 1 de Poder."},
+      {es:"Ingenioso Mecanismo",en:"Ingenious Device",costo:"2",fuerza:"-",tipo:"Item",texto:"Esta locacion obtiene: Accion de Mover a un <span class='kh'>Heroe</span>."},
+      {es:"Sr. Starkey",en:"Mr. Starkey",costo:"2",fuerza:"2",tipo:"Aliado",texto:"Cuando el Sr. Starkey es jugado, puedes mover un <span class='kh'>Heroe</span> de su locacion a una locacion adyacente desbloqueada."},
+      {es:"Mapa de Nunca Jamas",en:"Never Land Map",costo:"4",fuerza:"-",tipo:"Item",texto:"Cuando el Mapa de Nunca Jamas es jugado, desbloquea El Arbol del Ahorcado. Cuando juegues un <span class='ki'>Item</span>, puedes descartar el Mapa de Nunca Jamas en vez de pagar el costo del <span class='ki'>Item</span>."},
+      {es:"Obsesion",en:"Obsession",costo:"-",fuerza:"-",tipo:"Condicion",texto:"Durante su turno, si otro jugador derrota a un <span class='kh'>Heroe</span> con una Fuerza de 4 o mas, puedes jugar Obsesion. Revela cartas de encima de tu mazo de Destino hasta que reveles a un <span class='kh'>Heroe</span>. Juega o descarta al <span class='kh'>Heroe</span>. Descarta al resto."},
+      {es:"Pirata Bruto",en:"Pirate Brute",costo:"3",fuerza:"4",tipo:"Aliado",texto:"Sin habilidad adicional."},
+      {es:"Smee",en:"Smee",costo:"2",fuerza:"2",tipo:"Aliado",texto:"Smee obtiene +2 de Fuerza si esta en el Jolly Roger."},
+      {es:"Espadachin",en:"Swashbuckler",costo:"1",fuerza:"2",tipo:"Aliado",texto:"Sin habilidad adicional."},
+      {es:"Digno Oponente",en:"Worthy Opponent",costo:"0",fuerza:"-",tipo:"Efecto",texto:"Gana 2 de Poder. Revela cartas de encima de tu mazo de Destino hasta que reveles a un <span class='kh'>Heroe</span>. Juega a ese <span class='kh'>Heroe</span> y descarta el resto."}
+    ],
+    destino:[
+      {es:"Juan",en:"John",fuerza:"2",tipo:"Heroe",texto:"Juan obtiene +1 de Fuerza si tiene algun <span class='ki'>Item</span> unido a el."},
+      {es:"Ninos Perdidos",en:"Lost Boys",fuerza:"4",tipo:"Heroe",texto:"Al realizar una accion de Vencer para derrotar a los Ninos Perdidos, al menos dos <span class='ka'>Aliados</span> deben ser usados."},
+      {es:"Miguel",en:"Michael",fuerza:"1",tipo:"Heroe",texto:"Miguel obtiene +1 de Fuerza por cada locacion en el Reino de Capitan Garfio que tiene un <span class='kh'>Heroe</span>, incluyendo la locacion de Miguel."},
+      {es:"Peter Pan",en:"Peter Pan",fuerza:"8",tipo:"Heroe",texto:"Cuando Peter Pan es revelado, DEBES JUGARLO INMEDIATAMENTE al Arbol del Ahorcado, incluso si esta bloqueado. Las demas cartas de Destino reveladas durante esta accion son descartadas."},
+      {es:"Polvo de Hadas",en:"Pixie Dust",fuerza:"+2",tipo:"Item",texto:"Cuando el Polvo de Hadas es jugado, unelo a un <span class='kh'>Heroe</span>. Ese <span class='kh'>Heroe</span> obtiene +2 de Fuerza."},
+      {es:"Se le Parte la Cabeza",en:"Splitting Headache",fuerza:"-",tipo:"Efecto",texto:"Descarta un <span class='ki'>Item</span> del Reino del Capitan Garfio."},
+      {es:"Burla",en:"Taunt",fuerza:"-",tipo:"Item",texto:"Cuando Burla es jugada, unela a un <span class='kh'>Heroe</span>. Capitan Garfio debe derrotar a los <span class='kh'>Heroes</span> con Burla antes de derrotar a otros <span class='kh'>Heroes</span>."},
+      {es:"Tictac",en:"Tick Tock",fuerza:"5",tipo:"Heroe",texto:"Si Capitan Garfio se mueve a la locacion de Tictac, Capitan Garfio debe inmediatamente descartar su mano."},
+      {es:"Campanita",en:"Tinker Bell",fuerza:"2",tipo:"Heroe",texto:"Cuando Campanita es jugada, puedes descartar a un <span class='ka'>Aliado</span> de su locacion."},
+      {es:"Wendy",en:"Wendy",fuerza:"3",tipo:"Heroe",texto:"Todos los otros <span class='kh'>Heroes</span> en el Reino del Capitan Garfio obtienen +1 de Fuerza."}
+    ]
+  },
+
+  malefica:{
+    name:"Malefica",
+    sub:"El Hada Oscura",
+    image:"malefica.jpg",
+    imagePos:"center top",
+    accent:"#9b6fd6",
+    accent2:"rgba(75,30,130,0.8)",
+    heroOverlay:"linear-gradient(to bottom, rgba(40,15,70,0.5) 0%, rgba(20,8,40,0.2) 35%, rgba(6,3,12,0.75) 65%, #06030c 100%)",
+    quote:"&laquo;Ahora sal con una maldicion y sirveme bien&raquo;",
+    objetivo:"Comienza tu turno con una Maldicion en cada locacion.",
+    locaciones:[
+      {es:"Montanas Prohibidas",en:"Forbidden Mountains",ico:"&#9968;&#65039;"},
+      {es:"Cabana de Rosa",en:"Briar Rose's Cottage",ico:"&#127969;"},
+      {es:"El Bosque",en:"The Forest",ico:"&#127794;"},
+      {es:"Castillo del Rey Estefano",en:"King Stefan's Castle",ico:"&#127984;"}
+    ],
+    jugabilidad:"Encuentra Maldiciones de tu mazo y jugalas para tener una Maldicion en cada locacion. Si comienzas tu turno con al menos una <span class='km'>Maldicion</span> en cada locacion, ganas el juego.",
+    especial:{nombre:"Maldicion",texto:"Maldicion es un tipo de carta unico de Malefica. Las <span class='km'>Maldiciones</span> funcionan exactamente como <span class='ki'>Items</span>: se juegan a la parte inferior de su Reino y pueden ser movidas con una accion de Mover un <span class='ki'>Item</span> o un <span class='ka'>Aliado</span>, con la excepcion de que no detonan Condiciones relacionadas con <span class='ki'>Items</span>. Todas las <span class='km'>Maldiciones</span> tienen una accion que causara que sean descartadas."},
+    incompleta:false,
+    villano:[
+      {es:"Esbirro Cacareante",en:"Cackling Goon",costo:"1",fuerza:"1",tipo:"Aliado",texto:"El Esbirro Cacareante obtiene +1 de Fuerza por cada <span class='kh'>Heroe</span> en su locacion."},
+      {es:"Forma de Dragon",en:"Dragon Form",costo:"3",fuerza:"-",tipo:"Efecto",texto:"Derrota a un <span class='kh'>Heroe</span> con una Fuerza de 3 o menos. Si eres objeto de una accion de Destino antes de tu siguiente turno, gana 3 de Poder."},
+      {es:"Sueno Eterno",en:"Dreamless Sleep",costo:"3",fuerza:"-",tipo:"Maldicion",texto:"Los <span class='kh'>Heroes</span> en esta locacion obtienen -2 de Fuerza. Descarta esta <span class='km'>Maldicion</span> cuando un <span class='ka'>Aliado</span> es jugado a esta locacion."},
+      {es:"Bosque de Espinas",en:"Forest of Thorns",costo:"2",fuerza:"-",tipo:"Maldicion",texto:"Los <span class='kh'>Heroes</span> deben tener una Fuerza de 4 o mas para ser jugados a esta locacion. Descarta esta <span class='km'>Maldicion</span> cuando un <span class='kh'>Heroe</span> es jugado a esta locacion."},
+      {es:"Fuego Verde",en:"Green Fire",costo:"3",fuerza:"-",tipo:"Maldicion",texto:"Los <span class='kh'>Heroes</span> no pueden ser jugados en esta locacion. Descarta esta <span class='km'>Maldicion</span> si Malefica se mueve a esta locacion."},
+      {es:"Malicia",en:"Malice",costo:"-",fuerza:"-",tipo:"Condicion",texto:"Durante su turno, si otro jugador derrota a un <span class='kh'>Heroe</span> con una Fuerza de 4 o mas, puedes jugar Malicia. Derrota a un <span class='kh'>Heroe</span> con una Fuerza de 4 o menos."},
+      {es:"Cuervo",en:"Raven",costo:"3",fuerza:"1",tipo:"Aliado",texto:"Antes de que Malefica se mueva, puedes mover al Cuervo a cualquier locacion y realizar una accion disponible en su nueva locacion. El Cuervo no puede realizar acciones de Destino."},
+      {es:"Esbirro Feroz",en:"Savage Goon",costo:"3",fuerza:"4",tipo:"Aliado",texto:"Sin habilidad adicional."},
+      {es:"Esbirro Siniestro",en:"Sinister Goon",costo:"2",fuerza:"3",tipo:"Aliado",texto:"El Esbirro Siniestro obtiene +1 de Fuerza si hay alguna <span class='km'>Maldicion</span> en su locacion."},
+      {es:"Rueca",en:"Spinning Wheel",costo:"1",fuerza:"-",tipo:"Item",texto:"Si un <span class='kh'>Heroe</span> es derrotado en esta locacion, gana Poder igual a la Fuerza del <span class='kh'>Heroe</span> menos 1."},
+      {es:"Cetro",en:"Staff",costo:"1",fuerza:"-",tipo:"Item",texto:"Si Malefica esta en esta locacion, el Costo de jugar un <span class='ke'>Efecto</span> o <span class='km'>Maldicion</span> es reducido por 1 de Poder."},
+      {es:"Tirania",en:"Tyranny",costo:"-",fuerza:"-",tipo:"Condicion",texto:"Durante su turno, si otro jugador tiene tres o mas <span class='ka'>Aliados</span> en su Reino, puedes jugar Tirania. Toma tres cartas a tu mano, luego descarta cualesquiera tres cartas de tu mano."},
+      {es:"Desvanecer",en:"Vanish",costo:"0",fuerza:"-",tipo:"Efecto",texto:"En tu siguiente turno, Malefica no tiene que moverse a otra locacion."}
+    ],
+    destino:[
+      {es:"Aurora",en:"Aurora",fuerza:"4",tipo:"Heroe",texto:"Cuando Aurora es jugada, revela la carta de encima del mazo de Destino de Malefica. Si es un <span class='kh'>Heroe</span>, jugalo. De no ser asi, regresala a encima del mazo."},
+      {es:"Fauna",en:"Fauna",fuerza:"2",tipo:"Heroe",texto:"Cuando Fauna es jugada, puedes descartar un Sueno Eterno de su locacion."},
+      {es:"Flora",en:"Flora",fuerza:"3",tipo:"Heroe",texto:"Cuando Flora es jugada, Malefica debe revelar su mano. Hasta que Flora sea derrotada, Malefica debe jugar con su mano revelada."},
+      {es:"Guardias",en:"Guards",fuerza:"3",tipo:"Heroe",texto:"Al realizar una accion de Vencer para derrotar a los Guardias, al menos dos <span class='ka'>Aliados</span> deben ser usados."},
+      {es:"Rey Humberto",en:"King Hubert",fuerza:"3",tipo:"Heroe",texto:"Cuando el Rey Humberto es jugado, puedes mover un <span class='ka'>Aliado</span> de cada locacion adyacente a su locacion."},
+      {es:"Rey Estefano",en:"King Stefan",fuerza:"4",tipo:"Heroe",texto:"Cuando el Rey Estefano es jugado, puedes mover a Malefica a cualquier locacion."},
+      {es:"Primavera",en:"Merryweather",fuerza:"4",tipo:"Heroe",texto:"Las <span class='km'>Maldiciones</span> no pueden ser jugadas a la locacion de Primavera."},
+      {es:"Lo que Sone",en:"Once Upon a Dream",fuerza:"-",tipo:"Efecto",texto:"Descarta una <span class='km'>Maldicion</span> de una locacion en el Reino de Malefica que tenga un <span class='kh'>Heroe</span>."},
+      {es:"Principe Felipe",en:"Prince Philip",fuerza:"5",tipo:"Heroe",texto:"Cuando el Principe Felipe es jugado, puedes descartar a todos los <span class='ka'>Aliados</span> de su locacion."},
+      {es:"Espada de la Verdad",en:"Sword of Truth",fuerza:"+2",tipo:"Item",texto:"Cuando la Espada de la Verdad es jugada, unela a un <span class='kh'>Heroe</span> sin otros <span class='ki'>Items</span> unidos. Ese <span class='kh'>Heroe</span> obtiene +2 de Fuerza. El Costo de jugar una <span class='km'>Maldicion</span> a esta locacion es aumentado por 2 de Poder."}
+    ]
+  },
+
+  juan:{
+    name:"Principe Juan",
+    sub:"El Regente de Nottingham",
+    image:"prince john.webp",
+    imagePos:"center top",
+    accent:"#c9a227",
+    accent2:"rgba(139,0,0,0.6)",
+    heroOverlay:"linear-gradient(to bottom, rgba(20,8,40,0.45) 0%, rgba(10,4,20,0.15) 30%, rgba(6,3,12,0.75) 65%, #06030c 100%)",
+    quote:"&laquo;&iexcl;Esta corona me da una sensacion de poder!&raquo;",
+    objetivo:"Comienza tu turno con al menos 20 de Poder.",
+    locaciones:[
+      {es:"Bosque Sherwood",en:"Sherwood Forest",ico:"&#127795;"},
+      {es:"Iglesia del Fraile Tuck",en:"Friar Tuck's Church",ico:"&#9962;"},
+      {es:"Nottingham",en:"Nottingham",ico:"&#127960;&#65039;"},
+      {es:"La Carcel",en:"The Jail",ico:"&#9939;"}
+    ],
+    jugabilidad:"Consigue 20 de Poder y conservalo hasta el inicio del turno siguiente para ganar. Accumula poder mediante acciones, cartas y habilidades de tus <span class='ka'>Aliados</span>. Mantente atento a Robin Hood y otras cartas de Destino que pueden reducir tu poder.",
+    especial:null,
+    incompleta:false,
+    villano:[
+      {es:"Benditos Impuestos",en:"Beautiful, Lovely, Taxes",costo:"0",fuerza:"-",tipo:"Efecto",texto:"Gana 1 de Poder por cada <span class='kh'>Heroe</span> en tu Reino."},
+      {es:"Arco y Flechas",en:"Bow and Arrows",costo:"1",fuerza:"+1",tipo:"Item",texto:"Cuando el Arco y Flechas son jugados, unelos a un <span class='ka'>Aliado</span>. Ese <span class='ka'>Aliado</span> obtiene +1 de Fuerza. Cuando ese <span class='ka'>Aliado</span> sea descartado, descarta este <span class='ki'>Item</span> en su lugar."},
+      {es:"Cobardia",en:"Cowardice",costo:"-",fuerza:"-",tipo:"Condicion",texto:"Durante su turno, si otro jugador tiene tres o mas <span class='ka'>Aliados</span> en su Reino, puedes jugar Cobardia. Juega a un <span class='ka'>Aliado</span> de tu mano gratuitamente."},
+      {es:"Avaricia",en:"Greed",costo:"-",fuerza:"-",tipo:"Condicion",texto:"Durante su turno, si otro jugador tiene 6 o mas de Poder, puedes jugar Avaricia. Gana 3 de Poder."},
+      {es:"Flecha de Oro",en:"Golden Arrow",costo:"0",fuerza:"-",tipo:"Item",texto:"Cuando la Flecha de Oro es jugada, unela a un <span class='ka'>Aliado</span>. Cuando ese <span class='ka'>Aliado</span> es usado para derrotar a un <span class='kh'>Heroe</span>, gana 2 de Poder."},
+      {es:"Aprisonar",en:"Imprison",costo:"2",fuerza:"-",tipo:"Efecto",texto:"Mueve a un <span class='kh'>Heroe</span> a La Carcel."},
+      {es:"Intimidacion",en:"Intimidation",costo:"2",fuerza:"-",tipo:"Efecto",texto:"Realiza una accion de Vencer, pero no descartes a los <span class='ka'>Aliados</span> utilizados para derrotar al <span class='kh'>Heroe</span>."},
+      {es:"Corona del Rey Ricardo",en:"King Richard's Crown",costo:"1",fuerza:"-",tipo:"Item",texto:"Si el Principe Juan esta en esta locacion, todos los Costos de las cartas son reducidos por 1 de Poder."},
+      {es:"Lelo",en:"Nutsy",costo:"2",fuerza:"2",tipo:"Aliado",texto:"Todos los otros <span class='ka'>Aliados</span> en la locacion de Lelo obtienen +1 de Fuerza."},
+      {es:"Guardias Rinocerontes",en:"Rhino Guards",costo:"3",fuerza:"4",tipo:"Aliado",texto:"Sin habilidad adicional."},
+      {es:"Tender una Trampa",en:"Set a Trap",costo:"1",fuerza:"-",tipo:"Efecto",texto:"Puedes mover a un <span class='ka'>Aliado</span> a cualquier locacion. Realiza una accion de Vencer."},
+      {es:"Sheriff de Nottingham",en:"Sheriff of Nottingham",costo:"3",fuerza:"3",tipo:"Aliado",texto:"Antes de que el Principe Juan se mueva, puedes mover al Sheriff de Nottingham a cualquier locacion y ganar 1 de Poder si hay algun <span class='kh'>Heroe</span> en su nueva locacion."},
+      {es:"Sir Hiss",en:"Sir Hiss",costo:"2",fuerza:"2",tipo:"Aliado",texto:"Si el Principe Juan esta en la locacion de Sir Hiss, puedes realizar una accion que este cubierta por un <span class='kh'>Heroe</span> en esa locacion."},
+      {es:"Tiro Listo",en:"Trigger",costo:"2",fuerza:"4",tipo:"Aliado",texto:"Todos los otros <span class='ka'>Aliados</span> en la locacion de Tiro Listo obtienen -1 de Fuerza."},
+      {es:"Orden",en:"Warrant",costo:"1",fuerza:"-",tipo:"Item",texto:"Gana 2 de Poder cada vez que un <span class='kh'>Heroe</span> es jugado a esta locacion."},
+      {es:"Arqueros Lobo",en:"Wolf Archers",costo:"2",fuerza:"2",tipo:"Aliado",texto:"Al realizar una accion de Vencer, los Arqueros Lobo pueden ser usados para derrotar a un <span class='kh'>Heroe</span> en su locacion o en una locacion adyacente."}
+    ],
+    destino:[
+      {es:"Alan Dale",en:"Alan-a-Dale",fuerza:"2",tipo:"Heroe",texto:"Todos los otros <span class='kh'>Heroes</span> en el Reino del Principe Juan obtienen +1 de Fuerza."},
+      {es:"Astuto Disfraz",en:"Clever Disguise",fuerza:"-",tipo:"Item",texto:"Cuando el Astuto Disfraz es jugado, unelo a un <span class='kh'>Heroe</span>. Ese <span class='kh'>Heroe</span> no puede ser derrotado. En cualquier momento, el Principe Juan podra pagar 2 de Poder para descartar el Astuto Disfraz."},
+      {es:"Fraile Tuck",en:"Friar Tuck",fuerza:"3",tipo:"Heroe",texto:"Cuando el Fraile Tuck es jugado, puedes descartar todas las Ordenes de su locacion. El Principe Juan no gana ningun Poder de ellas."},
+      {es:"Rey Ricardo",en:"King Richard",fuerza:"5",tipo:"Heroe",texto:"El Principe Juan no puede jugar <span class='ke'>Efectos</span>."},
+      {es:"Lady Kluck",en:"Lady Kluck",fuerza:"6",tipo:"Heroe",texto:"Lady Kluck no puede ser jugada o movida a La Carcel."},
+      {es:"Little John",en:"Little John",fuerza:"5",tipo:"Heroe",texto:"Cuando Little John es jugado, puedes tomar hasta 4 de Poder del Principe Juan y ponerlos en Little John. Cuando Little John es derrotado, el Poder es regresado al Principe Juan."},
+      {es:"Senorita Marian",en:"Maid Marian",fuerza:"3",tipo:"Heroe",texto:"Cuando la Senorita Marian es derrotada, encuentra a Robin Hood y jugalo en la misma locacion."},
+      {es:"Robin Hood",en:"Robin Hood",fuerza:"5",tipo:"Heroe",texto:"La cantidad de Poder que el Principe Juan gana de cada carta o accion es reducida por 1 de Poder."},
+      {es:"Skippy",en:"Skippy",fuerza:"2",tipo:"Heroe",texto:"Los Arqueros Lobo no pueden ser usados para derrotar a Skippy."},
+      {es:"Robarle a los Ricos",en:"Steal from the Rich",fuerza:"-",tipo:"Efecto",texto:"Toma hasta 4 de Poder del Principe Juan y ponlos encima de algun <span class='kh'>Heroe</span>. Cuando ese <span class='kh'>Heroe</span> sea derrotado, el Poder es regresado al Principe Juan."},
+      {es:"Toby",en:"Toby",fuerza:"2",tipo:"Heroe",texto:"Cuando Toby es derrotado, bajalo de vuelta al mazo de Destino del Principe Juan."}
+    ]
+  },
+
+  ursula:{
+    name:"Ursula",
+    sub:"La Bruja del Mar",
+    image:"ursula.jpg",
+    imagePos:"center center",
+    accent:"#9b30ff",
+    accent2:"rgba(0,190,220,0.5)",
+    heroOverlay:"linear-gradient(to bottom, rgba(6,3,12,0.15) 0%, transparent 30%, rgba(6,3,12,0.65) 62%, #06030c 100%)",
+    quote:"&laquo;&iexcl;El mar y todas sus criaturas se arrodillan ante mi!&raquo;",
+    objetivo:"Comienza tu turno con el Tridente y la Corona en la Guarida de Ursula.",
+    locaciones:[
+      {es:"Guarida de Ursula",en:"Ursula's Lair",ico:"&#128010;"},
+      {es:"Barco de Eric",en:"Eric's Ship",ico:"&#9749;"},
+      {es:"La Costa",en:"The Shore",ico:"&#127958;&#65039;"},
+      {es:"El Palacio",en:"The Palace",ico:"&#127984;"}
+    ],
+    jugabilidad:"Al inicio del juego, el Palacio esta bloqueado. La Ficha de Candado puede ser movida a la Guarida de Ursula jugando Mutacion, y viceversa. Debes buscar la Corona y jugarla, ademas de buscar el Tridente y jugarlo &mdash; haciendo que el Rey Triton aparezca y el Tridente se una a el; luego debes derrotarlo. Comienza tu turno con ambos <span class='ki'>Items</span> en la Guarida de Ursula para ganar.",
+    especial:null,
+    incompleta:false,
+    villano:[
+      {es:"Arrogancia",en:"Arrogance",costo:"-",fuerza:"-",tipo:"Condicion",texto:"Durante su turno, si otro jugador derrota a un <span class='kh'>Heroe</span> con una Fuerza de 4 o mas, puedes jugar Arrogancia. Pon tres cartas en tu mano, luego descarta cualesquiera tres cartas."},
+      {es:"Contrato Vinculante (Guarida)",en:"Binding Contract",costo:"2",fuerza:"-",tipo:"Item",texto:"Cuando el Contrato Vinculante es jugado, unelo a un <span class='kh'>Heroe</span> que no este en la Guarida de Ursula. Ese <span class='kh'>Heroe</span> es derrotado cuando es movido a la Guarida de Ursula."},
+      {es:"Contrato Vinculante (Barco)",en:"Binding Contract",costo:"2",fuerza:"-",tipo:"Item",texto:"Cuando el Contrato Vinculante es jugado, unelo a un <span class='kh'>Heroe</span> que no este en el Barco de Eric. Ese <span class='kh'>Heroe</span> es derrotado cuando es movido al Barco de Eric."},
+      {es:"Contrato Vinculante (Costa)",en:"Binding Contract",costo:"2",fuerza:"-",tipo:"Item",texto:"Cuando el Contrato Vinculante es jugado, unelo a un <span class='kh'>Heroe</span> que no este en La Costa. Ese <span class='kh'>Heroe</span> es derrotado cuando es movido a La Costa."},
+      {es:"Contrato Vinculante (Palacio)",en:"Binding Contract",costo:"2",fuerza:"-",tipo:"Item",texto:"Cuando el Contrato Vinculante es jugado, unelo a un <span class='kh'>Heroe</span> que no este en el Palacio. Ese <span class='kh'>Heroe</span> es derrotado cuando es movido al Palacio."},
+      {es:"Caldero",en:"Cauldron",costo:"1",fuerza:"-",tipo:"Item",texto:"Activar: Gana 2 de Poder por cada Contrato Vinculante en tu Reino."},
+      {es:"Mutacion",en:"Change Form",costo:"1",fuerza:"-",tipo:"Efecto",texto:"Mueve la Ficha de Candado ya sea a la Guarida de Ursula o al Palacio."},
+      {es:"Corona",en:"Crown",costo:"4",fuerza:"-",tipo:"Item",texto:"Activar: Mira las dos cartas de encima de tu mazo de Destino. Descarta ambas cartas o regrésalas encima en cualquier orden."},
+      {es:"Divinacion",en:"Divination",costo:"1",fuerza:"-",tipo:"Efecto",texto:"Revela cartas de encima de tu mazo hasta que reveles un Contrato Vinculante. Pon ese Contrato Vinculante en tu mano. Descarta el resto."},
+      {es:"Flotsam",en:"Flotsam",costo:"2",fuerza:"4",tipo:"Aliado",texto:"Activar: Mueve a un <span class='kh'>Heroe</span> de la locacion de Flotsam a una locacion adyacente desbloqueada."},
+      {es:"Hacerse Gigante",en:"Grow Giant",costo:"1",fuerza:"-",tipo:"Efecto",texto:"Realiza una accion disponible en una locacion adyacente a Ursula, incluso si la locacion esta bloqueada."},
+      {es:"Jetsam",en:"Jetsam",costo:"2",fuerza:"4",tipo:"Aliado",texto:"Activar: Mueve a un <span class='kh'>Heroe</span> de la locacion de Jetsam a una locacion adyacente desbloqueada."},
+      {es:"Oportunista",en:"Opportunist",costo:"1",fuerza:"-",tipo:"Efecto",texto:"Escoge un <span class='ki'>Item</span> o <span class='ke'>Efecto</span> de tu pila de descarte y ponlo en tu mano."},
+      {es:"Pobres Almas en Desgracia",en:"Poor Unfortunate Souls",costo:"2",fuerza:"-",tipo:"Efecto",texto:"Puedes mover a cada <span class='kh'>Heroe</span> a una locacion adyacente desbloqueada."},
+      {es:"Tridente",en:"Trident",costo:"4",fuerza:"-",tipo:"Item",texto:"Cuando el Tridente es jugado, encuentra al Rey Triton y jugalo a esta locacion. Une el Tridente a el. Cuando el Rey Triton es derrotado, el Tridente es regresado a Ursula en la misma locacion."},
+      {es:"Truqueria",en:"Trickery",costo:"-",fuerza:"-",tipo:"Condicion",texto:"Durante su turno, si otro jugador tiene 6 o mas de Poder, puedes jugar Truqueria. Revela y juega la carta de encima del mazo de Destino de ese jugador."},
+      {es:"Torbellino",en:"Whirlpool",costo:"1",fuerza:"-",tipo:"Efecto",texto:"Mueve a un <span class='kh'>Heroe</span> a cualquier locacion desbloqueada."}
+    ],
+    destino:[
+      {es:"Ariel",en:"Ariel",fuerza:"4",tipo:"Heroe",texto:"Cuando Ariel es jugada, puedes mover un <span class='ki'>Item</span> suelto de una locacion desbloqueada a su locacion. Hasta que Ariel sea derrotada, Ursula no puede realizar la accion de Mover un <span class='ki'>Item</span> o un <span class='ka'>Aliado</span>."},
+      {es:"Cachivache",en:"Dinglehopper",fuerza:"-",tipo:"Item",texto:"Cuando el Cachivache es jugado, unelo a un <span class='kh'>Heroe</span>. Cada vez que Ursula se mueva a esta locacion, pierde 1 de Poder."},
+      {es:"Eric",en:"Eric",fuerza:"4",tipo:"Heroe",texto:"Cuando Eric es jugado, puedes mover a un <span class='kh'>Heroe</span> a cualquier locacion desbloqueada."},
+      {es:"Flounder",en:"Flounder",fuerza:"1",tipo:"Heroe",texto:"Cuando Flounder es jugado, puedes barajar la pila de descarte de Ursula con su mazo."},
+      {es:"Grimsby",en:"Grimsby",fuerza:"2",tipo:"Heroe",texto:"Cuando Grimsby es jugado, puedes mover la Ficha de Candado ya sea a la Guarida de Ursula o al Palacio."},
+      {es:"Rey Triton",en:"King Triton",fuerza:"6",tipo:"Heroe",texto:"El Costo de jugar un Contrato Vinculante o <span class='ke'>Efecto</span> dirigido al Rey Triton es aumentado por 1 de Poder."},
+      {es:"Max",en:"Max",fuerza:"3",tipo:"Heroe",texto:"Si Max es jugado a la locacion de Ursula, puedes mover a Ursula a cualquier locacion desbloqueada."},
+      {es:"Volver a Forma",en:"Return to Form",fuerza:"-",tipo:"Efecto",texto:"Escoge un <span class='kh'>Heroe</span> con una Fuerza de 4 o menos de la pila de descarte de Destino de Ursula. Juega a ese <span class='kh'>Heroe</span> a la locacion de Ursula."},
+      {es:"Scuttle",en:"Scuttle",fuerza:"2",tipo:"Heroe",texto:"Cuando Scuttle es jugado, puedes escoger un <span class='ki'>Item</span> de la pila de descarte de Destino de Ursula y unirlo a Scuttle."},
+      {es:"Sebastian",en:"Sebastian",fuerza:"2",tipo:"Heroe",texto:"Cuando Sebastian es jugado, puedes escoger un Contrato Vinculante que este unido a un <span class='kh'>Heroe</span> en una locacion desbloqueada y unirselo a Sebastian en su lugar."},
+      {es:"Bocacho",en:"Snarfblat",fuerza:"-",tipo:"Item",texto:"Cuando el Bocacho es jugado, unelo a un <span class='kh'>Heroe</span>. El Costo de jugar un Contrato Vinculante a ese <span class='kh'>Heroe</span> es aumentado por 3 de Poder."}
+    ]
+  }
+};
+
+// ==================== STATE ====================
+const state = {
+  page: "reglas",
+  villain: null,
+  tab: "villano",
+  filter: "Todas",
+  search: ""
+};
+
+const TYPE_COLOR = {
+  Aliado:"var(--t-aliado)",
+  Item:"var(--t-item)",
+  Efecto:"var(--t-efecto)",
+  Condicion:"var(--t-condicion)",
+  Heroe:"var(--t-heroe)",
+  Maldicion:"var(--t-maldicion)"
+};
+
+// ==================== NAV ====================
+function nav(pageKey) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Show target
+  const target = document.getElementById('page-' + pageKey);
+  if (target) {
+    target.classList.add('active');
+    target.scrollTop = 0;
+  }
+  // Update nav buttons
+  document.querySelectorAll('.nbtn').forEach(b => {
+    b.classList.toggle('active', b.dataset.page === pageKey);
+  });
+
+  state.page = pageKey;
+
+  if (pageKey !== "reglas") {
+    state.villain = pageKey;
+    state.tab = "villano";
+    state.filter = "Todas";
+    state.search = "";
+    if (!target.dataset.rendered) {
+      renderVillain(pageKey);
+      target.dataset.rendered = "1";
+    }
+  }
+}
+
+// ==================== VILLAIN RENDER ====================
+function renderVillain(key) {
+  const v = VILLAINS[key];
+  const el = document.getElementById('page-' + key);
+
+  const locsHtml = v.locaciones.map(l => `
+    <div class="loc-card">
+      <div class="loc-ico">${l.ico}</div>
+      <div><div class="loc-es">${l.es}</div><span class="loc-en">${l.en}</span></div>
+    </div>`).join('');
+
+  const specialHtml = v.especial ? `
+    <div class="iblock special">
+      <div class="iblock-title"><span class="ii">&#128161;</span>Carta especial: ${v.especial.nombre}</div>
+      <p>${v.especial.texto}</p>
+    </div>` : "";
+
+  const warnHtml = v.incompleta ? `
+    <div class="warn-box">
+      &#9888;&#65039; Las cartas de Destino de Ursula no estan disponibles en el documento fuente. Se muestran unicamente las Cartas de Villano disponibles.
+    </div>` : "";
+
+  el.innerHTML = `
+    <button class="lfab" onclick="openLegend()">&#128214; Simbologia</button>
+    <div class="v-hero" style="background-image:url('${v.image}');background-position:${v.imagePos}">
+      <div class="v-overlay" style="background:${v.heroOverlay}"></div>
+      <div class="v-content">
+        <div class="v-eyebrow">${v.sub}</div>
+        <div class="v-name">${v.name}</div>
+        <div class="v-quote">${v.quote}</div>
+      </div>
+    </div>
+
+    <div class="content" style="--accent:${v.accent};--accent2:${v.accent2}">
+
+      <div class="obj-card" style="--accent:${v.accent}">
+        <span class="clabel">&#127919; Objetivo de victoria</span>
+        <p class="obj-text">${v.objetivo}</p>
+      </div>
+
+      <div class="sdiv">Locaciones</div>
+      <div class="locs-grid">${locsHtml}</div>
+
+      <div class="iblock" style="--accent:${v.accent}">
+        <div class="iblock-title"><span class="ii">&#9878;&#65039;</span>Jugabilidad</div>
+        <p>${v.jugabilidad}</p>
+      </div>
+
+      ${specialHtml}
+      ${warnHtml}
+
+      <div class="sdiv">Cartas</div>
+
+      <div class="ctabs" id="ctabs-${key}">
+        <button class="ctab active" id="tab-villano-${key}" style="--accent:${v.accent}"
+          onclick="setTab('${key}','villano')">
+          &#127183; Villano (${v.villano.length})
+        </button>
+        <button class="ctab" id="tab-destino-${key}" style="--accent:${v.accent}"
+          onclick="setTab('${key}','destino')">
+          &#9889; Destino (${v.destino.length})
+        </button>
+      </div>
+
+      <div class="sbar">
+        <span class="sico">&#128269;</span>
+        <input type="text" id="search-${key}" placeholder="Buscar carta o habilidad..."
+          oninput="setSearch('${key}', this.value)">
+      </div>
+
+      <div class="fchips" id="chips-${key}"></div>
+      <div class="clist" id="cards-${key}"></div>
+    </div>
+  `;
+
+  renderChips(key);
+  renderCards(key);
+}
+
+function setTab(key, tab) {
+  if (state.villain !== key) return;
+  state.tab = tab;
+  state.filter = "Todas";
+  state.search = "";
+  const si = document.getElementById('search-' + key);
+  if (si) si.value = "";
+  document.getElementById('tab-villano-' + key).classList.toggle('active', tab === 'villano');
+  document.getElementById('tab-destino-' + key).classList.toggle('active', tab === 'destino');
+  renderChips(key);
+  renderCards(key);
+}
+
+function setFilter(key, f) {
+  state.filter = f;
+  renderChips(key);
+  renderCards(key);
+}
+
+function setSearch(key, val) {
+  state.search = val.toLowerCase();
+  renderCards(key);
+}
+
+function renderChips(key) {
+  const v = VILLAINS[key];
+  const list = v[state.tab];
+  const types = [...new Set(list.map(c => c.tipo))];
+  const all = ["Todas", ...types];
+  const accent = v.accent;
+
+  document.getElementById('chips-' + key).innerHTML = all.map(t => {
+    const color = t === "Todas" ? accent : TYPE_COLOR[t] || accent;
+    const active = state.filter === t;
+    return `<span class="fchip${active ? ' active' : ''}"
+      style="${active ? 'background:' + color + ';border-color:' + color : ''}"
+      onclick="setFilter('${key}','${t}')">
+      <span class="fdot" style="background:${color}"></span>${t}
+    </span>`;
+  }).join('');
+}
+
+function renderCards(key) {
+  const v = VILLAINS[key];
+  let list = [...v[state.tab]];
+
+  if (state.filter !== "Todas") list = list.filter(c => c.tipo === state.filter);
+  if (state.search) {
+    list = list.filter(c =>
+      c.es.toLowerCase().includes(state.search) ||
+      c.en.toLowerCase().includes(state.search) ||
+      c.texto.toLowerCase().includes(state.search)
+    );
+  }
+
+  const container = document.getElementById('cards-' + key);
+
+  if (list.length === 0) {
+    container.innerHTML = '<div class="empty-msg">Sin resultados para esta busqueda.</div>';
+    return;
+  }
+
+  container.innerHTML = list.map((c, i) => {
+    const tcolor = TYPE_COLOR[c.tipo] || "var(--gold)";
+    const statHtml = c.tipo === "Heroe"
+      ? `<span class="vstat"><b>Fuerza</b>${c.fuerza}</span>`
+      : `<span class="vstat"><b>Costo</b>${c.costo}</span><span class="vstat"><b>Fuerza</b>${c.fuerza}</span>`;
+    return `
+    <div class="vcard" onclick="toggleCard(this)">
+      <div class="vcard-head">
+        <div class="vcard-main">
+          <div class="vcard-es">${c.es}</div>
+          <div class="vcard-en">${c.en}</div>
+          <div class="vcard-stats">${statHtml}</div>
+        </div>
+        <span class="tbadge" style="background:${tcolor}">${c.tipo}</span>
+        <span class="vchev">&#9660;</span>
+      </div>
+      <div class="vcard-body">
+        <div class="vcard-text">${c.texto}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleCard(el) {
+  el.classList.toggle('open');
+}
+
+// ==================== LEGEND ====================
+function openLegend() {
+  document.getElementById('legend').classList.add('show');
+}
+function closeLegend() {
+  document.getElementById('legend').classList.remove('show');
+}
+
+// Close legend on escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLegend();
+});
+
+// ==================== INIT ====================
+// Pre-render first villain for faster perceived performance
+setTimeout(() => {
+  ['garfio','malefica','juan','ursula'].forEach(k => {
+    const el = document.getElementById('page-' + k);
+    if (!el.dataset.rendered) {
+      renderVillain(k);
+      el.dataset.rendered = "1";
+    }
+  });
+}, 100);
+</script>
+</body>
+</html>
