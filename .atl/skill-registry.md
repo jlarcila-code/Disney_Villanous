@@ -6,6 +6,8 @@ Last updated: 2026-08-10
 
 ## Sources scanned
 
+- .claude\skills
+- .agents\skills
 - C:\Users\jlarcila\.agents\skills
 - C:\Users\jlarcila\.config\opencode\skills
 - C:\Users\jlarcila\.claude\skills
@@ -48,7 +50,7 @@ Last updated: 2026-08-10
 | `distill` | Strip designs to their essence by removing unnecessary complexity. Great design is simple, powerful, and clean. Use when the user asks to simplify, declutter, reduce noise, remove elements, or make a UI cleaner and more focused. | user | `C:\Users\jlarcila\.agents\skills\distill\SKILL.md` |
 | `emil-design-eng` | This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great. | user | `C:\Users\jlarcila\.agents\skills\emil-design-eng\SKILL.md` |
 | `find-skills` | Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill. | user | `C:\Users\jlarcila\.agents\skills\find-skills\SKILL.md` |
-| `frontend-design` | Create distinctive, production-grade frontend interfaces with intentional aesthetics, high craft, and non-generic visual identity. Use when building or styling web UIs, components, pages, dashboards, or frontend applications. | user | `C:\Users\jlarcila\.agents\skills\frontend-design\SKILL.md` |
+| `frontend-design` | Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making choices that don't read as templated defaults. | project | `C:\Users\jlarcila\Downloads\disney_villanous\.claude\skills\frontend-design\SKILL.md` |
 | `frontend-dev-guidelines` | Opinionated frontend development standards for modern React + TypeScript applications. Covers Suspense-first data fetching, lazy loading, feature-based architecture, MUI v7 styling, TanStack Router, performance optimization, and strict TypeScript practices. | user | `C:\Users\jlarcila\.agents\skills\frontend-dev-guidelines\SKILL.md` |
 | `frontend-developer` | Build React components, implement responsive layouts, and handle | user | `C:\Users\jlarcila\.agents\skills\frontend-developer\SKILL.md` |
 | `frontend-mobile-development-component-scaffold` | You are a React component architecture expert specializing in scaffolding production-ready, accessible, and performant components. Generate complete component implementations with TypeScript, tests, s | user | `C:\Users\jlarcila\.agents\skills\frontend-mobile-development-component-scaffold\SKILL.md` |
@@ -65,6 +67,7 @@ Last updated: 2026-08-10
 | `high-end-visual-design` | Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. Blocks all the common defaults that make AI designs look cheap or generic. | user | `C:\Users\jlarcila\.agents\skills\high-end-visual-design\SKILL.md` |
 | `impeccable` | Create distinctive, production-grade frontend interfaces with high design quality. Generates creative, polished code that avoids generic AI aesthetics. Use when the user asks to build web components, pages, artifacts, posters, or applications, or when any design skill requires project context. Call with 'craft' for shape-then-build, 'teach' for design context setup, or 'extract' to pull reusable components and tokens into the design system. | user | `C:\Users\jlarcila\.agents\skills\impeccable\SKILL.md` |
 | `industrial-brutalist-ui` | Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid grids, extreme type scale contrast, utilitarian color, analog degradation effects. For data-heavy dashboards, portfolios, or editorial sites that need to feel like declassified blueprints. | user | `C:\Users\jlarcila\.agents\skills\industrial-brutalist-ui\SKILL.md` |
+| `interaction-design` | Design and implement microinteractions, motion design, transitions, and user feedback patterns. Use when adding polish to UI interactions, implementing loading states, or creating delightful user experiences. | project | `C:\Users\jlarcila\Downloads\disney_villanous\.claude\skills\interaction-design\SKILL.md` |
 | `issue-creation` | Create and triage GitHub issues from repository evidence. Trigger: issue creation, bug reports, feature requests, or issue approval. | user | `C:\Users\jlarcila\.claude\skills\issue-creation\SKILL.md` |
 | `judgment-day` | Trigger: judgment day, dual review, adversarial review, juzgar. Run explicit blind dual review with at most two scoped fix/re-judgment rounds. | user | `C:\Users\jlarcila\.claude\skills\judgment-day\SKILL.md` |
 | `jupyter-notebook` | Use when the user asks to create, scaffold, or edit Jupyter notebooks (`.ipynb`) for experiments, explorations, or tutorials; prefer the bundled templates and run the helper script `new_notebook.py` to generate a clean starting notebook. | user | `C:\Users\jlarcila\.codex\skills\jupyter-notebook\SKILL.md` |

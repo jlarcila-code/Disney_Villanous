@@ -108,11 +108,7 @@ body::after{
 .nbtn .nlabel{font-family:'Cinzel',serif;font-size:8px;letter-spacing:.07em;text-transform:uppercase;line-height:1;margin-top:1px}
 
 /* ===== VILLAIN HERO ===== */
-.v-hero{
-  position:relative;width:100%;
-  height:min(72vw, 68vh, 420px);
-  background-size:cover;background-position:center top;overflow:hidden;flex-shrink:0
-}
+.v-hero{position:relative;width:100%;height:min(88vw,420px);background-size:cover;background-position:center center;overflow:hidden;flex-shrink:0}
 .v-overlay{
   position:absolute;inset:0;
   background:linear-gradient(to bottom,
@@ -570,11 +566,11 @@ const VILLAINS = {
   garfio:{
     name:"Capitan Garfio",
     sub:"El Terror de Nunca Jamas",
-    image:"hook.jpg",
+    image:"Captain_Hookmover.webp",
     imagePos:"center center",
-    accent:"#c87941",
-    accent2:"rgba(139,26,0,0.7)",
-    heroOverlay:"linear-gradient(to bottom, rgba(6,3,12,0.2) 0%, transparent 35%, rgba(6,3,12,0.7) 65%, #06030c 100%)",
+    accent:"#c4547b",
+    accent2:"rgba(130,25,65,0.7)",
+    heroOverlay:"linear-gradient(to bottom, rgba(6,3,12,0.1) 0%, transparent 35%, rgba(6,3,12,0.7) 68%, #06030c 100%)",
     quote:"&laquo;&iexcl;Dupliquen la polvoray acorten la mecha!&raquo;",
     objetivo:"Derrota a Peter Pan en el Jolly Roger.",
     locaciones:[
@@ -620,11 +616,11 @@ const VILLAINS = {
   malefica:{
     name:"Malefica",
     sub:"El Hada Oscura",
-    image:"malefica.jpg",
-    imagePos:"center top",
-    accent:"#9b6fd6",
-    accent2:"rgba(75,30,130,0.8)",
-    heroOverlay:"linear-gradient(to bottom, rgba(40,15,70,0.5) 0%, rgba(20,8,40,0.2) 35%, rgba(6,3,12,0.75) 65%, #06030c 100%)",
+    image:"Maleficentmover.webp",
+    imagePos:"center center",
+    accent:"#50c040",
+    accent2:"rgba(20,100,10,0.7)",
+    heroOverlay:"linear-gradient(to bottom, rgba(6,3,12,0.1) 0%, transparent 35%, rgba(6,3,12,0.7) 68%, #06030c 100%)",
     quote:"&laquo;Ahora sal con una maldicion y sirveme bien&raquo;",
     objetivo:"Comienza tu turno con una Maldicion en cada locacion.",
     locaciones:[
@@ -669,10 +665,10 @@ const VILLAINS = {
     name:"Principe Juan",
     sub:"El Regente de Nottingham",
     image:"prince john.webp",
-    imagePos:"center top",
+    imagePos:"center center",
     accent:"#c9a227",
     accent2:"rgba(139,0,0,0.6)",
-    heroOverlay:"linear-gradient(to bottom, rgba(20,8,40,0.45) 0%, rgba(10,4,20,0.15) 30%, rgba(6,3,12,0.75) 65%, #06030c 100%)",
+    heroOverlay:"linear-gradient(to bottom, rgba(6,3,12,0.1) 0%, transparent 35%, rgba(6,3,12,0.7) 68%, #06030c 100%)",
     quote:"&laquo;&iexcl;Esta corona me da una sensacion de poder!&raquo;",
     objetivo:"Comienza tu turno con al menos 20 de Poder.",
     locaciones:[
@@ -720,11 +716,11 @@ const VILLAINS = {
   ursula:{
     name:"Ursula",
     sub:"La Bruja del Mar",
-    image:"ursula.jpg",
+    image:"Ursulamover.webp",
     imagePos:"center center",
-    accent:"#9b30ff",
-    accent2:"rgba(0,190,220,0.5)",
-    heroOverlay:"linear-gradient(to bottom, rgba(6,3,12,0.15) 0%, transparent 30%, rgba(6,3,12,0.65) 62%, #06030c 100%)",
+    accent:"#7b35d0",
+    accent2:"rgba(80,20,160,0.65)",
+    heroOverlay:"linear-gradient(to bottom, rgba(6,3,12,0.1) 0%, transparent 35%, rgba(6,3,12,0.7) 68%, #06030c 100%)",
     quote:"&laquo;&iexcl;El mar y todas sus criaturas se arrodillan ante mi!&raquo;",
     objetivo:"Comienza tu turno con el Tridente y la Corona en la Guarida de Ursula.",
     locaciones:[
@@ -773,13 +769,13 @@ const VILLAINS = {
 
 // ==================== VILLAIN AMBIENT TINTS ====================
 const VILLAIN_TINTS = {
-  garfio:  'radial-gradient(ellipse 120% 60% at 80% 50%, rgba(120,50,8,0.18) 0%, transparent 70%)',
-  malefica:'radial-gradient(ellipse 120% 60% at 30% 30%, rgba(80,20,140,0.2) 0%, transparent 70%)',
-  juan:    'radial-gradient(ellipse 120% 60% at 60% 40%, rgba(100,70,0,0.18) 0%, transparent 70%)',
-  ursula:  'radial-gradient(ellipse 120% 60% at 50% 60%, rgba(60,0,160,0.22) 0%, transparent 70%)'
+  garfio:  'radial-gradient(ellipse 120% 60% at 80% 50%, rgba(160,40,90,0.18) 0%, transparent 70%)',
+  malefica:'radial-gradient(ellipse 120% 60% at 30% 30%, rgba(20,130,10,0.18) 0%, transparent 70%)',
+  juan:    'radial-gradient(ellipse 120% 60% at 60% 40%, rgba(120,100,0,0.18) 0%, transparent 70%)',
+  ursula:  'radial-gradient(ellipse 120% 60% at 50% 60%, rgba(80,20,180,0.22) 0%, transparent 70%)'
 };
 const VILLAIN_NAV_GLOW = {
-  garfio:'#c87941', malefica:'#9b6fd6', juan:'#c9a227', ursula:'#9b30ff'
+  garfio:'#c4547b', malefica:'#50c040', juan:'#c9a227', ursula:'#7b35d0'
 };
 
 // ==================== STATE ====================
