@@ -428,21 +428,21 @@ body::after{
           <div class="step-n">1</div>
           <div>
             <p class="step-t">Mover tu villano</p>
-            <p class="step-d">Traslada tu peon de su ubicacion actual a una ubicacion diferente dentro de tu reino.</p>
+            <p class="step-d">Traslada tu peon a cualquier otra locacion de tu reino. <strong>No puedes quedarte en la misma locacion.</strong></p>
           </div>
         </div>
         <div class="step">
           <div class="step-n">2</div>
           <div>
             <p class="step-t">Realizar acciones</p>
-            <p class="step-d">Lleva a cabo las acciones disponibles en la nueva ubicacion segun sus iconos. Puedes realizarlas en el orden que prefieras y todas son opcionales.</p>
+            <p class="step-d">Realiza las acciones de tu nueva locacion en el orden que prefieras. Todas son opcionales. <strong>Cada accion puede realizarse una vez por cada simbolo que aparezca.</strong></p>
           </div>
         </div>
         <div class="step">
           <div class="step-n">3</div>
           <div>
             <p class="step-t">Robar cartas</p>
-            <p class="step-d">Al final del turno, si tienes menos de 4 cartas en la mano, roba de tu mazo de villano hasta tener 4. No puedes robar en ningun otro momento del turno.</p>
+            <p class="step-d">Al <em>final</em> de tu turno, si tienes menos de 4 cartas, roba hasta completar 4. <strong>Debes esperar al final del turno para robar, incluso si empezaste con menos de 4.</strong> Si el mazo esta vacio, baraja el descarte para formar uno nuevo.</p>
           </div>
         </div>
       </div>
@@ -452,40 +452,45 @@ body::after{
       <div class="rcard-title"><span class="ri">&#9878;&#65039;</span>Acciones Disponibles</div>
       <div class="arow">
         <div class="aico">&#128176;</div>
-        <div><div class="aname">Recolectar Poder</div><div class="adesc">Toma del caldero tantas fichas de poder como indique el numero del icono y colocalas en tu retrato. El poder es vital para jugar cartas y activar habilidades.</div></div>
+        <div><div class="aname">Recolectar Poder</div><div class="adesc">Toma del caldero fichas de poder iguales al numero del icono de tu locacion. El poder es la moneda del juego para jugar cartas.</div></div>
       </div>
       <div class="arow">
         <div class="aico">&#127183;</div>
-        <div><div class="aname">Jugar una Carta</div><div class="adesc">Juega una carta de tu mano pagando su costo de poder por cada simbolo de "jugar carta" en tu ubicacion. Las cartas de condicion no requieren esta accion.</div></div>
+        <div><div class="aname">Jugar una Carta</div><div class="adesc">Juega una carta por cada simbolo de &quot;jugar carta&quot; en tu locacion, pagando su costo en poder. <strong>Si no tenes suficiente poder, no podes jugarla.</strong> Aliados e Items se colocan al fondo de cualquier locacion de tu reino. Efectos y Condiciones se descartan al jugarse.</div></div>
       </div>
       <div class="arow">
         <div class="aico">&#128260;</div>
-        <div><div class="aname">Reubicar</div><div class="adesc">Mueve uno de tus aliados o un objeto de una ubicacion a una ubicacion adyacente.</div></div>
+        <div><div class="aname">Reubicar</div><div class="adesc">Mueve un Aliado o Item desde <strong>cualquier locacion de tu reino</strong> a una locacion adyacente. <strong>No podes mover un Item unido a un Aliado o Heroe.</strong> Si moves un Aliado, todos sus Items unidos se mueven con el.</div></div>
       </div>
       <div class="arow">
         <div class="aico">&#128694;</div>
-        <div><div class="aname">Mover un Heroe</div><div class="adesc">Mueve a un heroe que este en tu reino a una ubicacion adyacente.</div></div>
+        <div><div class="aname">Mover un Heroe</div><div class="adesc">Mueve un Heroe desde <strong>cualquier locacion de tu reino</strong> a una locacion adyacente. Sus Items unidos se mueven con el.</div></div>
       </div>
       <div class="arow">
         <div class="aico">&#9876;&#65039;</div>
-        <div><div class="aname">Vencer (Vanquish)</div><div class="adesc">Usa la fuerza de tus aliados para derrotar a los heroes. Debes igualar o superar la fuerza del heroe con la fuerza colectiva de tus aliados en esa ubicacion. Tras vencerlo, tanto el heroe como los aliados usados van al descarte.</div></div>
+        <div><div class="aname">Vencer (Vanquish)</div><div class="adesc">Derrota un Heroe usando Aliados que esten en <strong>la misma locacion que el Heroe</strong>. La Fuerza combinada debe igualar o superar la del Heroe. Los Aliados usados van al descarte de Villano; el Heroe va al descarte de <strong>Destino</strong> del oponente.</div></div>
       </div>
       <div class="arow">
         <div class="aico">&#128197;</div>
-        <div><div class="aname">Descartar Cartas</div><div class="adesc">Descarta tantas cartas como quieras boca arriba en tu pila de descarte para conseguir nuevas opciones en tu proximo turno.</div></div>
+        <div><div class="aname">Descartar Cartas</div><div class="adesc">Descarta boca arriba cualquier cantidad de cartas de tu mano a tu pila de descarte de Villano. No robas nuevas cartas hasta el final de tu turno.</div></div>
       </div>
       <div class="arow">
         <div class="aico">&#9889;</div>
-        <div><div class="aname">Destino (Fate)</div><div class="adesc">Elige a un oponente, revela las dos cartas superiores de su mazo de destino, juega una de ellas en su reino para frustrar sus planes y descarta la otra. El mazo de destino contiene heroes que bloquean acciones y estorban al villano.</div></div>
+        <div><div class="aname">Destino (Fate)</div><div class="adesc">Elige un oponente. Revela las 2 cartas superiores de su mazo de Destino, juega una y descarta la otra boca arriba a su descarte de Destino. Los Heroes se colocan <strong>encima</strong> de cualquier locacion, bloqueando las <strong>dos acciones superiores</strong>. <strong>Si una carta no puede jugarse</strong> (ej: un Item sin Heroes en el reino), ambas se descartan.</div></div>
       </div>
     </div>
 
     <div class="rcard">
       <div class="rcard-title"><span class="ri">&#128214;</span>Reglas Adicionales</div>
       <ul>
-        <li>Si tu mazo de villano se agota, baraja tu pila de descarte para formar un nuevo mazo y seguir robando.</li>
+        <li><strong>Acciones bloqueadas:</strong> Una accion cubierta por un Heroe no esta disponible hasta que sea movido o derrotado. Al quedar descubierta, esta disponible de inmediato si tu villano sigue ahi y aun es tu turno.</li>
+        <li><strong>Heroe con Fuerza 0:</strong> Igual debes usar Vencer (o una habilidad) para derrotarlo, pero no es necesario descartar Aliados.</li>
+        <li><strong>Multiples Heroes en una locacion:</strong> Pueden derrotarse en cualquier orden. Si el que cubre las acciones es derrotado, desliza los demas para que uno cubra los simbolos.</li>
+        <li><strong>Habilidades de carta:</strong> Si la habilidad se activa al ser <em>jugada</em>, no se activa si la carta es <em>movida</em>, y viceversa. Si una habilidad contradice el reglamento, <strong>la carta tiene precedencia</strong>.</li>
+        <li><strong>Condiciones:</strong> Se juegan durante el turno del oponente sin gastar la accion de Jugar Carta. El turno del oponente continua normalmente. <strong>No robas cartas hasta el final de tu propio turno.</strong></li>
+        <li><strong>Descartar por habilidad:</strong> Cuando una carta te indica descartar, no necesitas usar la accion de Descartar Cartas.</li>
+        <li><strong>Barajar mazos:</strong> Si necesitas robar de un mazo vacio, baraja el descarte para formar uno nuevo.</li>
         <li>El juego continua en sentido horario hasta que un villano complete su objetivo.</li>
-        <li>Las cartas de condicion se juegan durante el turno de un oponente si se cumple el requisito indicado, luego se descartan.</li>
       </ul>
     </div>
 
